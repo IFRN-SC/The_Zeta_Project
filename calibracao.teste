@@ -1,0 +1,77 @@
+#include <robo_hardware2.h> 
+#include <Servo.h>
+
+struct SensorRefletancia{
+  float preto;
+  float branco;
+};
+
+char C;                   //variavel que armazena a tecla apertada
+char S;       //variavel responsavel por sair do laço;
+
+SensorRefletancia EsqDefinitivo;
+SensorRefletancia DirDefinitivo;
+float calibra_esq;
+
+boolean sair_menu;
+boolean sair_menu_calibra_e;
+boolean sair_menu_calibra_d;
+
+
+
+void calibra_refletancia_E(){
+  SensorRefletancia EsqDefinitivo;
+  while(!sair_menu_calibra_e){
+    Serial.println("CALIBRACAO DO SENSOR ESQUERDO");
+    sair_menu_calibra_e = calibraSensor(robo.lerSensorLinhaEsq(), EsqDefinitivo);
+  }
+  calibra_esq= (EsqDefinitivo.preto + EsqDefinitivo.branco)/2;
+  Serial.print("Valor Calibrado no sensor Esquerdo ");
+  Serial.println(calibra_esq);  
+}
+
+bool calibraSensor(float valorAtual, SensorRefletancia &Definitivo){
+    bool sair_menu_calibra  = false;
+    
+    Serial.println("Para calibrar no PRETO aperte P");
+    Serial.println("Para calibrar no BRANCO aperte B");
+    Serial.println("Para sair aperte S");
+    
+    C=esperaLer();
+    
+    switch(C){
+      
+      case 'P':
+        Serial.print("Esquerdo preto atual é: ");          
+        Serial.println(valorAtual); //imprime na tela o valor lido no esquerdo no preto
+        Definitivo.preto = descubra_maior(Definitivo.preto, valorAtual);
+        break;
+        
+      case 'B':
+        Serial.print("Esquerdo branco atual é: ");
+        Serial.println(valorAtual); //imprime na tela o valor lido no esquerdo no branco
+        Definitivo.branco = descubra_menor(Definitivo.branco, valorAtual);
+        break;
+        
+      case 'S':
+        sair_menu_calibra = true;
+        break;
+      
+    }
+    return sair_menu_calibra;
+
+}
+
+
+void setup()
+{
+  Serial.begin(9600);
+  robo.configurar(false);
+ 
+  menu();
+}
+
+
+void loop()
+{               
+}
