@@ -1,38 +1,38 @@
-#include "teste.h"
+#include "classRefletancia"
 #include <robo_hardware2.h> 
 #include <Servo.h>
 
-SensorRefletancia2 EsqDefinitivo;
-SensorRefletancia2 DirDefinitivo;
+SensorRefletancia2 EsqDefinitivo;      //definindo sensor de refletancia esquerdo
+SensorRefletancia2 DirDefinitivo;      //definindo sensor de refletancia direito
 
 float calibra_esq;                     //variavel que armazena o valor calibrado do esquerdo
 float calibra_dir;                     //variavel que armazena o valor calibrado do direito
 char S;                                //variavel responsavel por sair do laço;
 boolean sair_menu_calibra = false;
 
-float descubra_maior(float valor1, float valor2){
+float descubraMaior(float valor1, float valor2){ //funçao para encontrar o maior valor, usada para achar o maior preto
   if(valor2 > valor1){ 
     valor1=valor2;;    //armazena maior valor de preto
   }
   return valor1;
 }
 
-float descubra_menor(float valor1, float valor2){
+float descubraMenor(float valor1, float valor2){  //funçao para encontrar o menor valor, usada para achar o menor branco
   if(valor2 < valor1){ 
     valor1=valor2;;   //armazena menor valor de branco
   }
   return valor1;
 }
 
-void menu(){
+void menu(){                                                      //funçao principal
   boolean sair_menu = false;
-    while(!sair_menu){
+    while(!sair_menu){                                           //laço para menu principal
       Serial.print("Para calibrar o sensor ESQUERDO aperte E "); //avisa qual letra apertar para calibrar o esquerdo
-      Serial.println("Para o DIREITO aperte D");  //avisa qual letra apertar para calibrar o direito
+      Serial.println("Para o DIREITO aperte D");                 //avisa qual letra apertar para calibrar o direito
       
-      char C=esperaLer();
+      char espera_ler = esperaLer();
       
-      switch(C){
+      switch(espera_ler){
         
         case 'E':
             calibra_refletancia_E();
@@ -53,9 +53,9 @@ char escolhaCor(){
   Serial.println("Para calibrar no BRANCO aperte B");
   Serial.println("Para sair aperte S");
   Serial.println("           "); 
-   char C = esperaLer();
+   char espera_ler = esperaLer();
    
-   return C;
+   return espera_ler;
 }
 
 void calibra_refletancia_E(){           //laço para calibrar o sensor de refletancia esquerdo
@@ -92,21 +92,21 @@ void calibra_refletancia_D(){           //laço para calibrar o sensor de reflet
   Serial.println("           ");
 }
 
-boolean calibraSensor(float valorAtual, char C, SensorRefletancia2 &Definitivo){
+boolean calibraSensor(float valorAtual, char espera_ler, SensorRefletancia2 &Definitivo){
    sair_menu_calibra = false;
    //while(!sair_menu_calibra){
-    switch(C){
+    switch(espera_ler){
       
       case 'P':
         Serial.print("Esquerdo preto atual é: ");          
         Serial.println(valorAtual); //imprime na tela o valor lido no esquerdo no preto
-        Definitivo.preto = descubra_maior(Definitivo.preto, valorAtual);
+        Definitivo.preto = descubraMaior(Definitivo.preto, valorAtual);
         break;
         
       case 'B':
         Serial.print("Esquerdo branco atual é: ");
         Serial.println(valorAtual); //imprime na tela o valor lido no esquerdo no branco
-        Definitivo.branco = descubra_menor(Definitivo.branco, valorAtual);
+        Definitivo.branco = descubraMenor(Definitivo.branco, valorAtual);
         break;
         
       case 'S':
@@ -123,8 +123,6 @@ boolean calibraSensor(float valorAtual, char C, SensorRefletancia2 &Definitivo){
 
 char esperaLer(){
     while(!Serial.available()){
-      
-      
     }
     return Serial.read();
 }
@@ -133,7 +131,7 @@ void setup(){
   Serial.begin(9600);
   robo.configurar(false);
   
-  while (!Serial) {
+  while (!Serial){
      ;
   }
   menu();
