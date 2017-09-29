@@ -7,20 +7,19 @@ SensorRefletancia2 DirDefinitivo;
 
 float calibra_esq;                     //variavel que armazena o valor calibrado do esquerdo
 float calibra_dir;                     //variavel que armazena o valor calibrado do direito
-char C;                                //variavel que armazena a tecla apertada
 char S;                                //variavel responsavel por sair do laço;
 boolean sair_menu_calibra = false;
 
 float descubra_maior(float valor1, float valor2){
   if(valor2 > valor1){ 
-    valor1=valor2;;    //maior preto
+    valor1=valor2;;    //armazena maior valor de preto
   }
   return valor1;
 }
 
 float descubra_menor(float valor1, float valor2){
   if(valor2 < valor1){ 
-    valor1=valor2;;   //menor branco
+    valor1=valor2;;   //armazena menor valor de branco
   }
   return valor1;
 }
@@ -31,7 +30,7 @@ void menu(){
       Serial.print("Para calibrar o sensor ESQUERDO aperte E "); //avisa qual letra apertar para calibrar o esquerdo
       Serial.println("Para o DIREITO aperte D");  //avisa qual letra apertar para calibrar o direito
       
-      C=esperaLer();
+      char C=esperaLer();
       
       switch(C){
         
@@ -49,16 +48,28 @@ void menu(){
     }
 }
 
+char escolhaCor(){
+  Serial.println("Para calibrar no PRETO aperte P");
+  Serial.println("Para calibrar no BRANCO aperte B");
+  Serial.println("Para sair aperte S");
+  Serial.println("           "); 
+   char C = esperaLer();
+   
+   return C;
+}
+
 void calibra_refletancia_E(){           //laço para calibrar o sensor de refletancia esquerdo
   SensorRefletancia2 EsqDefinitivo;
+  EsqDefinitivo.preto=0;
+  EsqDefinitivo.branco=100;
   sair_menu_calibra = false;
   
   while(!sair_menu_calibra){
-  Serial.println("CALIBRAÇAO DO SENSOR ESQUERDO");
-  calibraSensor(robo.lerSensorLinhaEsq(), EsqDefinitivo);
+    Serial.println("CALIBRAÇAO DO SENSOR ESQUERDO");
+    calibraSensor(robo.lerSensorLinhaEsq(), escolhaCor(), EsqDefinitivo);
   }
   
-  calibra_esq= (EsqDefinitivo.preto + EsqDefinitivo.branco)/2;
+  calibra_esq= (EsqDefinitivo.preto + EsqDefinitivo.branco) * 0.7;
   Serial.print("Valor Calibrado no sensor Esquerdo ");
   Serial.println(calibra_esq); 
   Serial.println("           ");
@@ -66,29 +77,24 @@ void calibra_refletancia_E(){           //laço para calibrar o sensor de reflet
 
 void calibra_refletancia_D(){           //laço para calibrar o sensor de refletancia esquerdo
   SensorRefletancia2 DirDefinitivo;
+  DirDefinitivo.preto=0;
+  DirDefinitivo.branco=100;
   sair_menu_calibra = false;
   
   while(!sair_menu_calibra){
-  Serial.println("CALIBRAÇAO DO SENSOR DIREITO");
-  calibraSensor(robo.lerSensorLinhaDir(), DirDefinitivo);
+    Serial.println("CALIBRAÇAO DO SENSOR DIREITO");
+    calibraSensor(robo.lerSensorLinhaDir(), escolhaCor(), DirDefinitivo);
   }
   
-  calibra_dir= (DirDefinitivo.preto + DirDefinitivo.branco)/2;
+  calibra_dir= (DirDefinitivo.preto + DirDefinitivo.branco) * 0.7;
   Serial.print("Valor Calibrado no sensor Direito ");
   Serial.println(calibra_dir); 
   Serial.println("           ");
 }
 
-boolean calibraSensor(float valorAtual, SensorRefletancia2 &Definitivo){
+boolean calibraSensor(float valorAtual, char C, SensorRefletancia2 &Definitivo){
    sair_menu_calibra = false;
    //while(!sair_menu_calibra){
-    Serial.println("Para calibrar no PRETO aperte P");
-    Serial.println("Para calibrar no BRANCO aperte B");
-    Serial.println("Para sair aperte S");
-    Serial.println("           ");
-    
-    C = esperaLer();
-    
     switch(C){
       
       case 'P':
@@ -106,13 +112,18 @@ boolean calibraSensor(float valorAtual, SensorRefletancia2 &Definitivo){
       case 'S':
         sair_menu_calibra = true;
         break;
-   }  
+   } 
+  Serial.print("EsqDefinitivo.preto"); 
+  Serial.println(Definitivo.preto);
+  Serial.print("EsqDefinitivo.branco");
+  Serial.println(Definitivo.branco); 
     //} 
     return sair_menu_calibra;
 }
 
 char esperaLer(){
     while(!Serial.available()){
+      
       
     }
     return Serial.read();
@@ -121,11 +132,7 @@ char esperaLer(){
 void setup(){
   Serial.begin(9600);
   robo.configurar(false);
-  EsqDefinitivo.preto=0;
-  EsqDefinitivo.branco=100;
-  DirDefinitivo.preto=0;
-  DirDefinitivo.branco=100;
-
+  
   while (!Serial) {
      ;
   }
@@ -135,5 +142,3 @@ void setup(){
 
 void loop(){               
 }
-//ERRO1: TEM Q APERTAR PRA CALIBRAR 2 VZS, PARA DAR O VALOR CORRETO
-//ERR02: OS RESULTADOS ESTAO DANDO ERRADOS
