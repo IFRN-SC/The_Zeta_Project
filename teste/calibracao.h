@@ -27,11 +27,12 @@ public:
   float descubraMaior(float valor1, float valor2);
   float descubraMenor(float valor1, float valor2);
   char esperaLer(); 
+  void media_calibracao valor;
   
   float getRefletanciaEsq(){return media_esq;}
   float getRefletanciaDir(){return media_dir;}
-  //float getRefletanciaMaisEsq(){return media_mais_esq;}
-  //float getRefletanciaMaisDir(){return media_mais_dir;}
+  float getRefletanciaMaisEsq(){return media_mais_esq;}
+  float getRefletanciaMaisDir(){return media_mais_dir;}
   
 };  
 
