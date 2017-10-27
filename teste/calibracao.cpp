@@ -5,8 +5,14 @@
 void Calibracao::menu(){  //funçao principal
   bool sair_menu = false;
     while(!sair_menu){                                           //laço para menu principal
-      Serial.print("Para calibrar o sensor ESQUERDO aperte E "); //avisa qual letra apertar para calibrar o esquerdo
+      Serial.println("### DIGITE A OPCAO DESEJADA ###");
+      Serial.println("            ");
+      Serial.println("Calibrar SENSOR DE REFLETANCIA");
+      Serial.println("Para o ESQUERDO aperte E "); //avisa qual letra apertar para calibrar o esquerdo
       Serial.println("Para o DIREITO aperte D");                 //avisa qual letra apertar para calibrar o direito
+      Serial.println("Para o MAIS ESQUERDO aperte M");                 //avisa qual letra apertar para calibrar o mais esquerdo
+      Serial.println("Para o MAIS DIREITO aperte N");                 //avisa qual letra apertar para calibrar o mais direito
+      Serial.println("            ");
       
       char espera_ler = esperaLer();
       
@@ -18,7 +24,12 @@ void Calibracao::menu(){  //funçao principal
         case 'D':
             calibra_refletancia_D();
             break;
-        
+        case 'M':    
+            calibra_refletancia_mais_E();
+            break;
+        case 'N':
+            calibra_refletancia_mais_D();
+            break;
         case 'S':
           sair_menu=true;
           
@@ -34,7 +45,7 @@ void Calibracao::calibra_refletancia_E(){           //laço para calibrar o sens
   sair_menu_calibra = false;
   
   while(!sair_menu_calibra){
-    Serial.println("CALIBRAÇAO DO SENSOR ESQUERDO");
+    Serial.println("CALIBRACAO DO SENSOR ESQUERDO");
     calibraSensor(robo.lerSensorLinhaEsq(), escolhaCor(), EsqDefinitivo);
   }
   
@@ -51,13 +62,47 @@ void Calibracao::calibra_refletancia_D(){           //laço para calibrar o sens
   sair_menu_calibra = false;
   
   while(!sair_menu_calibra){
-    Serial.println("CALIBRAÇAO DO SENSOR DIREITO");
+    Serial.println("CALIBRACAO DO SENSOR DIREITO");
     calibraSensor(robo.lerSensorLinhaDir(), escolhaCor(), DirDefinitivo);
   }
   
   media_dir= (DirDefinitivo.preto + DirDefinitivo.branco) * 0.5;
   Serial.print("Valor Calibrado no sensor Direito ");
   Serial.println(media_dir); 
+  Serial.println("           ");
+}
+
+void Calibracao::calibra_refletancia_mais_E(){           //laço para calibrar o sensor de refletancia esquerdo
+  Refletancia EsqDefinitivo;
+  EsqDefinitivo.preto=0;
+  EsqDefinitivo.branco=100;
+  sair_menu_calibra = false;
+  
+  while(!sair_menu_calibra){
+    Serial.println("CALIBRACAO DO SENSOR MAIS ESQUERDO");
+    calibraSensor(robo.lerSensorLinhaEsq(), escolhaCor(), EsqDefinitivo);
+  }
+  
+  media_mais_esq= (EsqDefinitivo.preto + EsqDefinitivo.branco) * 0.5;
+  Serial.print("Valor Calibrado no sensor Mais Esquerdo ");
+  Serial.println(media_mais_esq); 
+  Serial.println("           ");
+}
+
+void Calibracao::calibra_refletancia_mais_D(){           //laço para calibrar o sensor de refletancia esquerdo
+  Refletancia DirDefinitivo;
+  DirDefinitivo.preto=0;
+  DirDefinitivo.branco=100;
+  sair_menu_calibra = false;
+  
+  while(!sair_menu_calibra){
+    Serial.println("CALIBRACAO DO SENSOR MAIS DIREITO");
+    calibraSensor(robo.lerSensorLinhaDir(), escolhaCor(), DirDefinitivo);
+  }
+  
+  media_mais_dir= (DirDefinitivo.preto + DirDefinitivo.branco) * 0.5;
+  Serial.print("Valor Calibrado no sensor Mais Direito ");
+  Serial.println(media_mais_dir); 
   Serial.println("           ");
 }
 
