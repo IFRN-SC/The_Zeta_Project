@@ -1,6 +1,8 @@
 #include "calibracao.h"
+#include <robo_hardware2.h>
+#include <Servo.h>
 
-//fazer construtores
+media_calibracao valor;
 
 void Calibracao::menu(){  //funçao principal
   bool sair_menu = false;
@@ -53,6 +55,9 @@ void Calibracao::calibra_refletancia_E(){           //laço para calibrar o sens
   Serial.print("Valor Calibrado no sensor Esquerdo ");
   Serial.println(media_esq); 
   Serial.println("           ");
+  
+  valor.refletancia_esq= media_esq;
+  robo.salvarCalibracao(valor);
 }
 
 void Calibracao::calibra_refletancia_D(){           //laço para calibrar o sensor de refletancia esquerdo
@@ -70,6 +75,9 @@ void Calibracao::calibra_refletancia_D(){           //laço para calibrar o sens
   Serial.print("Valor Calibrado no sensor Direito ");
   Serial.println(media_dir); 
   Serial.println("           ");
+  
+  valor.refletancia_dir= media_dir;
+  robo.salvarCalibracao(valor);
 }
 
 void Calibracao::calibra_refletancia_mais_E(){           //laço para calibrar o sensor de refletancia esquerdo
@@ -87,6 +95,9 @@ void Calibracao::calibra_refletancia_mais_E(){           //laço para calibrar o
   Serial.print("Valor Calibrado no sensor Mais Esquerdo ");
   Serial.println(media_mais_esq); 
   Serial.println("           ");
+  
+  valor.refletancia_mais_esq= media_mais_esq;
+  robo.salvarCalibracao(valor);  
 }
 
 void Calibracao::calibra_refletancia_mais_D(){           //laço para calibrar o sensor de refletancia esquerdo
@@ -104,6 +115,9 @@ void Calibracao::calibra_refletancia_mais_D(){           //laço para calibrar o
   Serial.print("Valor Calibrado no sensor Mais Direito ");
   Serial.println(media_mais_dir); 
   Serial.println("           ");
+  
+  valor.refletancia_mais_dir= media_mais_dir;
+  robo.salvarCalibracao(valor);
 }
 
 char Calibracao::escolhaCor(){
