@@ -11,6 +11,8 @@ private:
   Refletancia DirDefinitivo;      //definindo sensor de refletancia direito
   float media_esq;                     //variavel que armazena o valor calibrado do esquerdo
   float media_dir;                     //variavel que armazena o valor calibrado do direito
+  float media_mais_esq;
+  float media_mais_dir;
   char S;                                //variavel responsavel por sair do laço;
   bool sair_menu_calibra = false;
   
@@ -18,6 +20,8 @@ public:
   void menu();
   void calibra_refletancia_E();
   void calibra_refletancia_D();
+  void calibra_refletancia_mais_E();
+  void calibra_refletancia_mais_D();
   char escolhaCor();
   bool calibraSensor(float valorAtual, char espera_ler, Refletancia &Definitivo);
   float descubraMaior(float valor1, float valor2);
