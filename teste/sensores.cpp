@@ -198,7 +198,7 @@ void sensores::lerCalibracao(){
 void sensores::calibrar(){
   cali.menu();
   sensorEsquerdo.setMedia(cali.getRefletanciaEsq());
- // sensorEsquerdo.setMedia(cali.getRefletanciaMaisEsq());
   sensorDireito.setMedia(cali.getRefletanciaDir());
- // sensorDireito.setMedia(cali.getRefletanciaMaisDir());
+  sensorEsquerdo.setMedia(cali.getRefletanciaMaisEsq());
+  sensorDireito.setMedia(cali.getRefletanciaMaisDir());
 }
