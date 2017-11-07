@@ -31,7 +31,7 @@ public:
   float descubraMaior(float valor1, float valor2);//declaraçao da funçao que retorna qual o maior valor
   float descubraMenor(float valor1, float valor2);//declaraçao da funçao que retorna qual o menor valor
   char esperaLer();               //declaraçao da funçao que aguarda alguma coisa ser digitada
-  void media_calibracao valor;    //declaraçao do classe que armazena os valores calibrados na EEPROM do Arduino
+  calibracao_dados valor;    //declaraçao da classe que armazena os valores calibrados na EEPROM do Arduino
   
   float getRefletanciaEsq(){return media_esq;} //declaraçao do get e set que retorna a media calculada no sensor de refletancia "ESQUERDO"
   float getRefletanciaDir(){return media_dir;} //declaraçao do get e set que retorna a media calculada no sensor de refletancia "DIREITO"
