@@ -80,13 +80,19 @@ public:
   inline boolean eh_branco_mais_direito(){return (sensorMaisDireito.ehBranco());}  
 
   void calibrar();
+  void semCalibracao();
+  void executar();
+  bool deve_seguir_linha();
+  bool deve_corrigir_esquerda();
+  bool deve_corrigir_direita();
+  bool deve_girar_a_esquerda();
+  bool deve_girar_a_direita();
   
  // int distancia_lado();
  // int distancia_frente();
 private:
   
   void espereCor();
-  void lerCalibracao();
   
   
   HSV hsv_esquerdo;
