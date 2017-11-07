@@ -1,13 +1,15 @@
 #include <robo_hardware2.h>
 #include <Servo.h>
 #include "sensores.h"
+#include "Estrategia.h"
 
-sensores sensores;
+Estrategia escolha;
 
 void setup(){
   robo.configurar(false);
-  sensores.calibrar();
+  escolha.calibrar(false);
 }
 
 void loop(){
+  escolha.execute();
 }
