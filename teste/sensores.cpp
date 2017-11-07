@@ -160,11 +160,11 @@ boolean sensores::preto_branco_preto_preto(){
 
 boolean sensores::configura(boolean realizar_cali){
     if(realizar_cali){
-      lerCalibracao();
+      semCalibracao();
       calibrar();
     }
     else {
-      lerCalibracao();
+      semCalibracao();
     }
 }
 
@@ -192,13 +192,37 @@ void sensores::espereCor(){
   } 
 }
 
-void sensores::lerCalibracao(){
+void sensores::semCalibracao(){
+  sensorEsquerdo.setMedia(41);
+  sensorMaisEsquerdo.setMedia(30);
+  sensorDireito.setMedia(41);
+  sensorMaisDireito.setMedia(30);
 }
 
 void sensores::calibrar(){
   cali.menu();
-  sensorEsquerdo.setMedia(cali.getRefletanciaEsq());
+  sensorEsquerdo.setMedia(cali.getRefletanciaEsq());//pega o valor rpega a valor do sensor de refletancia esquerda(que dentro da funço de calibracao), e retorna no sensorEsquerdo 
   sensorDireito.setMedia(cali.getRefletanciaDir());
   sensorEsquerdo.setMedia(cali.getRefletanciaMaisEsq());
   sensorDireito.setMedia(cali.getRefletanciaMaisDir());
+}
+
+bool sensores::deve_seguir_linha(){
+   return branco_branco_branco_branco();
+}
+
+bool sensores::deve_corrigir_esquerda(){
+    return branco_preto_branco_branco();
+}
+
+bool sensores::deve_corrigir_direita(){
+    return branco_branco_preto_branco();
+}
+
+bool sensores::deve_girar_a_esquerda(){
+    return (preto_preto_branco_branco() || preto_preto_branco_preto() || preto_branco_preto_branco() || preto_preto_preto_branco());
+}
+
+bool sensores::deve_girar_a_direita(){
+    return (branco_branco_preto_preto() || preto_branco_preto_preto() || branco_preto_branco_preto() || branco_preto_preto_preto());
 }
