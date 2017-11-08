@@ -133,14 +133,14 @@ bool Calibracao::calibraSensor(float valorAtual, char espera_ler, Refletancia &D
       
       case 'P':
         Serial.print("Esquerdo preto atual é: ");          
-        Serial.println(valorAtual); //imprime na tela o valor lido no esquerdo no preto
-        Definitivo.preto = descubraMaior(Definitivo.preto, valorAtual);
+        Serial.println(valorAtual);                           //imprime na tela o valor lido no preto
+        Definitivo.preto = descubraMaior(Definitivo.preto, valorAtual);//armazena no definivo.preto, a funçao de descubrir o maior valor, que recebe como parametro o valo definitivo e o atual
         break;
         
       case 'B':
         Serial.print("Esquerdo branco atual é: ");
-        Serial.println(valorAtual); //imprime na tela o valor lido no esquerdo no branco
-        Definitivo.branco = descubraMenor(Definitivo.branco, valorAtual);
+        Serial.println(valorAtual);                         //imprime na tela o valor lido no branco
+        Definitivo.branco = descubraMenor(Definitivo.branco, valorAtual);//armazena no definivo.branco, a funçao de descubrir o menor valor, que recebe como parametro o valo definitivo e o atual
         break;
         
       case 'S':
@@ -148,29 +148,29 @@ bool Calibracao::calibraSensor(float valorAtual, char espera_ler, Refletancia &D
         break;
    } 
   Serial.print("EsqDefinitivo.preto"); 
-  Serial.println(Definitivo.preto);
+  Serial.println(Definitivo.preto);                      //imprime o valor armazenado como definitivo preto
   Serial.print("EsqDefinitivo.branco");
-  Serial.println(Definitivo.branco);  
+  Serial.println(Definitivo.branco);                     //imprime o valor armazenado como definitivo branco 
     return sair_menu_calibra;
 }
 
 float Calibracao::descubraMaior(float valor1, float valor2){  //funçao para encontrar o maior valor, usada para achar o maior preto
   if(valor2 > valor1){ 
-    valor1=valor2;;    //armazena maior valor de preto
+    valor1=valor2;;                                      //armazena maior valor, usado para descobrir o maior valor do preto
   }
-  return valor1;
+  return valor1;                                         //retorna o maior valor comparado
 }
 
 float Calibracao::descubraMenor(float valor1, float valor2){  //funçao para encontrar o menor valor, usada para achar o menor branco
  if(valor2 < valor1){ 
-    valor1=valor2;;   //armazena menor valor de branco
+    valor1=valor2;;                                      //armazena menor valor, usado para descobrir o menor valor do branco
   }
-  return valor1;
+  return valor1;                                         //retorna o menor valor comparado
 }
 
-char Calibracao::esperaLer(){
-    while(!Serial.available()){
+char Calibracao::esperaLer(){                           //funçao usada para esperar ate que alguem digite algo
+    while(!Serial.available()){                         //enquanto for diferente de serial.available, ou seja, enquanto nao digitar nada ele nao vai fazer nada
     }
-    return Serial.read();
+    return Serial.read();                               //quando alguem digitar algo, ele vai sair do laço e vai retornar o char que foi digitado
 }
 
