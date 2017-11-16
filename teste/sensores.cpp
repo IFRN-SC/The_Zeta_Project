@@ -207,7 +207,7 @@ void sensores::calibrar(){
   sensorDireito.setMedia(cali.getRefletanciaMaisDir());
 }
 
-bool sensores::deve_seguir_linha(){
+bool sensores::deve_seguir_em_frente(){
    return branco_branco_branco_branco();
 }
 
@@ -226,3 +226,10 @@ bool sensores::deve_girar_a_esquerda(){
 bool sensores::deve_girar_a_direita(){
     return (branco_branco_preto_preto() || preto_branco_preto_preto() || branco_preto_branco_preto() || branco_preto_preto_preto());
 }
+bool sensores::encruzilhada(){
+    return preto_preto_preto_preto();
+}
+bool sensores::desalinhado(){
+    return (branco_branco_preto_preto() || branco_branco_branco_preto() || branco_preto_preto_preto() || 
+    preto_branco_branco_branco() || preto_preto_branco_branco() || preto_preto_preto_branco());
+}   

@@ -1,4 +1,6 @@
 #include "Estrategia.h"
+#include "sensores.h"
+#include "sensor_cor.h"
 
 void Estrategia::calibrar(boolean realizarCalibracao){        //"calibrar" eh funçao da classe "Estrategia"
   if(realizarCalibracao){                                     //se realizarCalibraçao ele vai chamar a funçao calibrar
@@ -10,7 +12,8 @@ void Estrategia::calibrar(boolean realizarCalibracao){        //"calibrar" eh fu
 }  
 
 void Estrategia::execute(){                                   //"execute" eh funçao da classe "Estrategia", para o robo executar alguma açao
-  if (sensor.deve_seguir_linha ()){                           //"deve_seguir_linha" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
+  valor_sensor_sonar_frontal = robo.lerSensorSonarFrontal();
+  if (sensor.deve_seguir_em_frente()){                           //"deve_seguir_linha" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
       robo.acionarMotores(40,40);
   }
   else if(sensor.deve_corrigir_esquerda()){                   //"deve_corrigir_esquerda" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
@@ -50,6 +53,59 @@ void Estrategia::execute(){                                   //"execute" eh fun
 	robo.acionarMotores(40,40);
      }
    }
-}
+   else if(sensor.encruzilhada()){
+       robo.acionarMotores(0,0);
+       
+         while(sensor.eh_verde_esquerdo()){
+           robo.acionarMotores(-40, 40);
+         }
+         while(sensor.eh_verde_direito()){
+           robo.acionarMotores(40, -40);
+         }
+   }
+   else if(valor_sensor_sonar_frontal < 7){
+     Estrategia::alinhaObstaculo();
+   }
+}   
+void Estrategia::alinhaObstaculo(){
+     while(sensor.desalinhado()){
+	if (sensor.branco_branco_branco_preto() || sensor.branco_branco_preto_preto() || sensor.branco_preto_preto_preto()){ 
+	    robo.acionarMotores(-35, 0); 
+	}
+	else if (sensor.preto_branco_branco_branco() || sensor.preto_preto_branco_branco() || sensor.preto_preto_preto_branco()){
+	    robo.acionarMotores(0, -35); 
+	}
+     }
+}  
 
-  
+void Estrategia::contornarObstaculo(){
+   robo.acionarMotores(0, 0);
+   delay(300);  
+   robo.acionarMotores(-35, -35);
+   delay(150);
+   
+   while (!sensor.branco_branco_branco_preto()){
+        robo.acionarMotores(-35, 35);
+   }
+   
+   Estrategia::alinhaObstaculo();
+   
+   robo.acionarMotores(40, 40);
+   delay(1300);
+   robo.acionarMotores(40, -40);
+   delay(810);
+   robo.acionarMotores(40, 40);
+   delay(1770);
+   robo.acionarMotores(40, -40);
+   delay(650);
+   
+   while (sensor.branco_branco_branco_branco()){
+	robo.acionarMotores(35, 35);
+   }
+   robo.acionarMotores(35, 35);
+   delay(250);
+   
+   while (!sensor.branco_branco_preto_branco()){
+	robo.acionarMotores(-35, 35);
+   }
+ }

@@ -73,8 +73,6 @@ void SensorDeCor::setCinza(HSV cinzaAt){
 
 
 float SensorDeCor:: media(int num1, int num2){ return (num1 + num2)/2; }
-/*
- float vCinzaBranco = 22;
+ float vCinzaBranco = 50;
  float vBrancoVerde = 68;
- float hVerdePreto = 32;
-*/
+ float hVerdePreto = 60;
