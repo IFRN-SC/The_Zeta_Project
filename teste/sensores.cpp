@@ -230,6 +230,11 @@ bool sensores::encruzilhada(){
     return preto_preto_preto_preto();
 }
 bool sensores::desalinhado(){
-    return (branco_branco_preto_preto() || branco_branco_branco_preto() || branco_preto_preto_preto() || 
-    preto_branco_branco_branco() || preto_preto_branco_branco() || preto_preto_preto_branco());
+    return (branco_branco_preto_preto() || preto_preto_branco_branco() || branco_preto_preto_branco() || preto_branco_branco_preto() || 
+    preto_branco_preto_branco() || branco_preto_branco_preto() || branco_preto_branco_branco() || branco_branco_preto_branco() ||
+    preto_branco_branco_branco() || branco_branco_branco_preto() || preto_preto_preto_branco() || branco_preto_preto_preto() || 
+    preto_preto_branco_preto() || preto_branco_preto_preto() || branco_branco_branco_branco());
 }   
+bool sensores::algum_sensor_eh_preto(){
+    return eh_preto_esquerdo() || eh_preto_direito() || eh_preto_mais_esquerdo() || eh_preto_mais_direito();
+}    

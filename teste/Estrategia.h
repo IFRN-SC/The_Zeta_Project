@@ -9,6 +9,8 @@ class Estrategia{              //classe Estrategia
     void calibrar(boolean);      //"calibrar" eh uma funçao criada para decidir caso queira calibrar ou nao o robo
     void alinhaObstaculo();
     void contornarObstaculo();
+    void girar_esquerdo_verde();
+    void girar_direito_verde();
     float valor_sensor_sonar_frontal;
     
   private:                    //todos as variaveis funçoes privadas s podem ser acessadas na classe em que foi criada

@@ -70,6 +70,8 @@ class sensores{                                   //classe "sensores", nela tem 
     inline boolean eh_preto_mais_direito(){return (sensorMaisDireito.ehPreto());}
     inline boolean eh_branco_mais_direito(){return (sensorMaisDireito.ehBranco());}  
   
+    bool algum_sensor_eh_preto();
+        
     void calibrar();
     void semCalibracao();
     void executar();
