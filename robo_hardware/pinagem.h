@@ -39,11 +39,11 @@ class pinagem{
   #define SONAR_TRIGGER_FRONTAL		A9 		//Define o pino do sensor sonar Trigger frontal
   #define SONAR_ECHO_FRONTAL		A8		//Define o pino do sensor sonar Echo frontal
 
-  #define SONAR_TRIGGER_LADO_ESQUERDO	12 		//Define o pino do sensor sonar Trigger lateral esquerdo
-  #define SONAR_ECHO_LADO_ESQUERDO	11 		//Define o pino do sensor sonar Echo lateral esquerdo
+  #define SONAR_TRIGGER_LADO_ESQUERDO	A7 		//Define o pino do sensor sonar Trigger lateral esquerdo
+  #define SONAR_ECHO_LADO_ESQUERDO	A6 		//Define o pino do sensor sonar Echo lateral esquerdo
 
-  #define SONAR_TRIGGER_LADO_DIREITO	18 		//Define o pino do sensor sonar Trigger lateral direito
-  #define SONAR_ECHO_LADO_DIREITO	19 		//Define o pino do sensor sonar Echo lateral direito
+  #define SONAR_TRIGGER_LADO_DIREITO	A4 		//Define o pino do sensor sonar Trigger lateral direito
+  #define SONAR_ECHO_LADO_DIREITO	A5 		//Define o pino do sensor sonar Echo lateral direito
 	
 };
 
