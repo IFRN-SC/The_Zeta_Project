@@ -193,14 +193,15 @@ void sensores::espereCor(){
 }
 
 void sensores::semCalibracao(){
-  sensorEsquerdo.setMedia(39);
-  sensorMaisEsquerdo.setMedia(30);
-  sensorDireito.setMedia(39);
-  sensorMaisDireito.setMedia(26);
+  sensorMaisEsquerdo.setMedia(31);
+  sensorEsquerdo.setMedia(42);
+  sensorDireito.setMedia(42);
+  sensorMaisDireito.setMedia(30);
 }
 
 void sensores::calibrar(){
-  cali.menu();
+  
+  cali.menu_geral(corEsquerdo, corDireito);
   sensorEsquerdo.setMedia(cali.getRefletanciaEsq());//pega o valor rpega a valor do sensor de refletancia esquerda(que dentro da funço de calibracao), e retorna no sensorEsquerdo 
   sensorDireito.setMedia(cali.getRefletanciaDir());
   sensorEsquerdo.setMedia(cali.getRefletanciaMaisEsq());

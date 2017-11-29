@@ -1,10 +1,109 @@
 #include "calibracao.h"
-#include <robo_hardware2.h>
-#include <Servo.h>
 
-void Calibracao::menu(){                                             //"menu" eh a funçao principal da classe calibraçao
-  bool sair_menu = false;                                            //variavel"sair_menu" recebeu falso e retorna um boleano
-    while(!sair_menu){                                               //laço para menu principal
+void Calibracao::espera(){  
+  while(1){
+    if(Serial.available()){
+      if(Serial.read() == 'S')
+        break;     
+    }
+  }
+}
+
+void Calibracao::calibraCorEsquerdo(SensorDeCor sensor){
+  Serial.println("CALIBRE HSV DO BRANCO");
+  espera();
+  sensor.setBranco(robo.getHSVEsquerdo()) ;
+  Serial.println("CALIBRE HSV DO PRETO");
+  espera();
+  sensor.setPreto(robo.getHSVEsquerdo());
+  Serial.println("CALIBRE HSV DO VERDE");
+  espera();
+  sensor.setVerde(robo.getHSVEsquerdo());
+  Serial.println("CALIBRE HSV DO CINZA");
+  espera();
+  sensor.setCinza(robo.getHSVEsquerdo());
+  
+  sensor.calibra();
+  
+}
+
+void Calibracao::calibraCorDireito(SensorDeCor sensor){
+  Serial.println("CALIBRE HSV DO BRANCO");
+  espera();
+  sensor.setBranco(robo.getHSVDireito()) ;
+  Serial.println("CALIBRE HSV DO PRETO");
+  espera();
+  sensor.setPreto(robo.getHSVDireito());
+  Serial.println("CALIBRE HSV DO VERDE");
+  espera();
+  sensor.setVerde(robo.getHSVDireito());
+  Serial.println("CALIBRE HSV DO CINZA");
+  espera();
+  sensor.setCinza(robo.getHSVDireito());
+  
+  sensor.calibra();
+  
+}
+
+
+
+void Calibracao::menu_geral(SensorDeCor sensorEsquerdo, SensorDeCor sensorDireito){
+ bool sair_menu_geral = false;
+  while(!sair_menu_geral){
+      Serial.println("### DIGITE A OPCAO DESEJADA ###");
+      Serial.println("            ");
+      Serial.println("Para calibrar sensor de REFLETANCIA aperte R");
+      Serial.println("Para calibrar sensor de COR aperte C");               //avisa qual letra apertar para calibrar o esquerdo
+      Serial.println("Para sair aperte S");      
+      
+      
+      char espera_ler = esperaLer();
+      
+
+      switch(espera_ler){                                        //switch(escolha caso), recebe como parametro a variavel "espera_ler"
+        
+        case 'R':
+            menu_refletancia();                            //caso seja "E", ele executa a funçao "calibra_refletancia_E()"
+            break;
+        case 'C':
+            menu_cor(sensorEsquerdo, sensorDireito);                             //caso seja "D", ele executa a funçao "calibra_refletancia_D()"
+            break;
+        case 'S':
+          sair_menu_geral=true; 
+      }  
+  }   
+}
+
+void Calibracao::menu_cor(SensorDeCor sensorEsquerdo, SensorDeCor sensorDireito){                                             //"menu" eh a funçao principal da classe calibraçao
+  bool sair_menu_cor = false;                                            //variavel"sair_menu" recebeu falso e retorna um boleano
+    while(!sair_menu_cor){                                               //laço para menu principal
+      Serial.println("### DIGITE A OPCAO DESEJADA ###");
+      Serial.println("            ");
+      Serial.println("Calibrar SENSOR DE COR");
+      Serial.println("Para o ESQUERDO aperte E ");               //avisa qual letra apertar para calibrar o esquerdo
+      Serial.println("Para o DIREITO aperte D");                 //avisa qual letra apertar para calibrar o direito
+      Serial.println("            ");
+      
+      char espera_ler = esperaLer();                             //a variavel "espera_ler" que retorna um char, recebe a funçao de "esperaLer()"
+      
+      switch(espera_ler){                                        //switch(escolha caso), recebe como parametro a variavel "espera_ler"
+        
+        case 'E':
+            calibraCorEsquerdo(sensorEsquerdo);                           
+            break;
+        case 'D':
+            calibraCorDireito(sensorDireito);
+            break;
+        case 'S':
+          sair_menu_cor=true;
+          
+      }
+    }
+}
+
+void Calibracao::menu_refletancia(){                                             //"menu" eh a funçao principal da classe calibraçao
+  bool sair_menu_refletancia = false;                                            //variavel"sair_menu" recebeu falso e retorna um boleano
+    while(!sair_menu_refletancia){                                               //laço para menu principal
       Serial.println("### DIGITE A OPCAO DESEJADA ###");
       Serial.println("            ");
       Serial.println("Calibrar SENSOR DE REFLETANCIA");
@@ -31,7 +130,7 @@ void Calibracao::menu(){                                             //"menu" eh
             calibra_refletancia_mais_D();                        //caso seja "N", ele executa a funçao "calibra_refletancia_mais_D()"
             break;
         case 'S':
-          sair_menu=true;
+          sair_menu_refletancia=true;
           
       }
     }
@@ -173,4 +272,3 @@ char Calibracao::esperaLer(){                           //funçao usada para esp
     }
     return Serial.read();                               //quando alguem digitar algo, ele vai sair do laço e vai retornar o char que foi digitado
 }
-

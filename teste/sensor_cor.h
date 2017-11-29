@@ -2,7 +2,6 @@
 #define SENSOR_COR_H
 
 #include <robo_hardware2.h>
-#include "cor.h"
 
 class SensorDeCor{
                  
@@ -22,6 +21,7 @@ public:
   SensorDeCor();
   void atualizarHSV(HSV hsvAt);
   void calibrar();
+  void calibra();
   boolean ehBranco();
   boolean ehPreto();
   boolean ehVerde();
@@ -44,6 +44,7 @@ private:
  float vBrancoVerde = 0;
  float vVerdePreto = 0;
  float hVerdePreto = 0;
+ float vBrancoPreto = 0;
  
 };
 #endif

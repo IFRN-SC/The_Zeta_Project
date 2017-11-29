@@ -4,17 +4,29 @@
 #define AJUSTE_2 16
 
 SensorDeCor::SensorDeCor(){
-/* hsv.h = 100;
- hsv.s = 100;
- hsv.v = 100;
-*/
+  
 }
 
-void SensorDeCor::calibrar(){
-  vCinzaBranco = media(cinza.v,branco.v);
+void SensorDeCor::calibra(){
+  vCinzaBranco = 50;
   vBrancoVerde = media(branco.v,verde.v) + AJUSTE_2;
   vVerdePreto = preto.v + 5;
-  hVerdePreto = media(preto.h,verde.h) + 10 ;
+  hVerdePreto = media(preto.h,verde.h) + AJUSTE_1 ;
+  vBrancoPreto = media(branco.v,preto.v);
+  Serial.print("v-Cinza Branco");
+  Serial.println(vCinzaBranco);
+  Serial.println("    ");
+  Serial.print("v-Branco Verde");
+  Serial.println(vBrancoVerde);
+  Serial.println("    ");
+  Serial.print("v-Verde Preto");
+  Serial.println(vVerdePreto);
+  Serial.println("    ");
+  Serial.print("h-Verde Preto");
+  Serial.println(hVerdePreto);
+  Serial.println("    ");
+  Serial.print("v-Branco Preto");
+  Serial.println(vBrancoPreto);
 }
 
 void SensorDeCor::atualizarHSV(HSV hsvAt){
@@ -53,26 +65,28 @@ boolean SensorDeCor::ehCinza(HSV hsvAt){
 
 // colocanco valores dos sensores de cor 
 
-/*void SensorDeCor::setBranco(HSV brancoAt){
+void SensorDeCor::setBranco(HSV brancoAt){
   branco = brancoAt;
-  cali_val.branco = branco;
 
 }
 void SensorDeCor::setPreto(HSV pretoAt){ 
-  preto = pretoAt; 
-  cali_val.preto = preto;
+  preto = pretoAt;
 }
 void SensorDeCor::setVerde(HSV verdeAt){ 
   verde = verdeAt;
-  cali_val.verde = verde;
 }
 void SensorDeCor::setCinza(HSV cinzaAt){
   cinza = cinzaAt;
-  cali_val.cinza = cinza;
-}*/
+}
 
 
 float SensorDeCor:: media(int num1, int num2){ return (num1 + num2)/2; }
- float vCinzaBranco = 50;
- float vBrancoVerde = 68;
- float hVerdePreto = 60;
+
+void SensorDeCor::calibrar(){
+  vCinzaBranco = (cinza.v + branco.v)/2;
+
+}
+ //float vCinzaBranco = 50;
+ //float vBrancoVerde = 75;
+ float hVerdePreto = 40;
+ float vBrancoPreto = 86;

@@ -2,6 +2,7 @@
 #define CALIBRACAO_H
 
 #include "Refletancia.h"
+#include "sensor_cor.h"
 #include <robo_hardware2.h> 
 #include <Servo.h>
 
@@ -21,7 +22,12 @@ class Calibracao{                 //classe "Calibracao"
     bool sair_menu_calibra = false; //variavel para sair do menur de calibracao
     
   public:
-    void menu();                    //declaraçao da funçao "menu", ou seja, a funçao principal da classe calibracao
+    void calibraCorEsquerdo(SensorDeCor sensor);
+    void calibraCorDireito(SensorDeCor sensor);
+    void espera();
+    void menu_geral(SensorDeCor sensorEsquerdo, SensorDeCor sensorDireito);
+    void menu_cor(SensorDeCor sensorEsquerdo, SensorDeCor sensorDireito);
+    void menu_refletancia();                    //declaraçao da funçao "menu", ou seja, a funçao principal da classe calibracao
     void calibra_refletancia_E();   //declaraçao da funçao para calibrar o sensor de refletancia "ESQUERDO", ele retorna a media calculada no sensor esquerdo
     void calibra_refletancia_D();   //declaraçao da funçao para calibrar o sensor de refletancia "DIREITO", retorna a media calculada
     void calibra_refletancia_mais_E();//declaraçao da funçao para calibrar o sensor de refletancia "MAIS ESQUERDO", retorna a media calculada

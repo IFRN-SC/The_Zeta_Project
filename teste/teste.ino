@@ -8,7 +8,7 @@ Estrategia escolha;
 void setup(){
   robo.configurar(false);
   Serial.begin(9600);
-  escolha.calibrar(false);
+  escolha.calibrar(true);
 }
 
 void loop(){
