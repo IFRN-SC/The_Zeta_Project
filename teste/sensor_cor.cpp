@@ -88,5 +88,5 @@ void SensorDeCor::calibrar(){
 }
  //float vCinzaBranco = 50;
  //float vBrancoVerde = 75;
- float hVerdePreto = 40;
+ float hVerdePreto = 72;
  float vBrancoPreto = 86;

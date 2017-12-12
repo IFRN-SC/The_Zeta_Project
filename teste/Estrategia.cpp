@@ -25,11 +25,11 @@ void Estrategia::execute(){                                   //"execute" eh fun
   valor_sensor_sonar_frontal = robo.lerSensorSonarFrontal();
   valor_sensor_sonar_lateral_Esquerdo = robo.lerSensorSonarLateralEsquerdo();
   valor_sensor_sonar_lateral_Direito = robo.lerSensorSonarLateralDireito();
-  
+
   if((valor_sensor_sonar_lateral_Esquerdo > 1 && valor_sensor_sonar_lateral_Esquerdo < 10) && (valor_sensor_sonar_lateral_Direito > 1 && valor_sensor_sonar_lateral_Direito < 10)){
      rampa();
   }
-  else if((valor_sensor_sonar_frontal > 1) && (valor_sensor_sonar_frontal < 6)){
+  else if((valor_sensor_sonar_frontal > 1) && (valor_sensor_sonar_frontal < 7)){
     contornarObstaculo();
    }
   else if (sensor.deve_seguir_em_frente()){                           //"deve_seguir_linha" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
@@ -170,16 +170,16 @@ void Estrategia::girar_direito_verde(){
 
 void Estrategia::rampa(){
   if(sensor.branco_preto_branco_branco()){
-     robo.acionarMotores(30, 45); 
+     robo.acionarMotores(40, 55); 
   }
   else if(sensor.branco_branco_preto_branco()){
-      robo.acionarMotores(45, 30);
+      robo.acionarMotores(55, 40);
   }
   else if(sensor.preto_branco_branco_branco()){
-      robo.acionarMotores(-20, 35);
+      robo.acionarMotores(-20, 45);
   }
   else if(sensor.branco_branco_branco_preto()){
-      robo.acionarMotores(35, -20);
+      robo.acionarMotores(45, -20);
   }
   else{
       robo.acionarMotores(45, 45);
