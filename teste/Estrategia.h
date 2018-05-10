@@ -7,7 +7,7 @@ class Estrategia{              //classe Estrategia
   public:                      //todos as variaveis e funçoes publicas pode ser acessados em outra classe
     Estrategia();
     void execute();              
-	void seguirlinha(); // seguir linha é uma função para quando o robô for seguir a linha 
+    void seguirlinha(); // seguir linha é uma função para quando o robô for seguir a linha 
     void calibrar(boolean realizarCalibracao);      //"calibrar" eh uma funçao criada para decidir caso queira calibrar ou nao o robo
     void alinhaObstaculo();
     void contornarObstaculo();
