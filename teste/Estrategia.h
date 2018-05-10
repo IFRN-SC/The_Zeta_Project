@@ -6,7 +6,8 @@
 class Estrategia{              //classe Estrategia
   public:                      //todos as variaveis e funçoes publicas pode ser acessados em outra classe
     Estrategia();
-    void execute();              //"execute" eh uma funçao criada para quando robo for executar alguma açao, como seguir linha
+    void execute();              
+	void seguirlinha(); // seguir linha é uma função para quando o robô for seguir a linha 
     void calibrar(boolean realizarCalibracao);      //"calibrar" eh uma funçao criada para decidir caso queira calibrar ou nao o robo
     void alinhaObstaculo();
     void contornarObstaculo();
@@ -20,6 +21,7 @@ class Estrategia{              //classe Estrategia
     float valor_sensor_sonar_lateral_Esquerdo;
     float valor_sensor_sonar_lateral_Direito;
 };
+
 
 
 
