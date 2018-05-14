@@ -1,7 +1,7 @@
 #ifndef SENSORES_H
 #define SENSORES_H
 
-#include <robo_hardware2.h>
+#include <robo_hardware.h>
 #include "sensor_refletancia.h"
 #include "sensor_cor.h"
 #include "calibracao.h"

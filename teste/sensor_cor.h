@@ -1,7 +1,7 @@
 #ifndef SENSOR_COR_H
 #define SENSOR_COR_H
 
-#include <robo_hardware2.h>
+#include <robo_hardware.h>
 
 class SensorDeCor{
                  

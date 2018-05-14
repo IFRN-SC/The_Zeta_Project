@@ -1,4 +1,4 @@
-#include <robo_hardware2.h>
+#include <robo_hardware.h>
 #include <Servo.h>
 #include "sensores.h"
 #include "Estrategia.h"

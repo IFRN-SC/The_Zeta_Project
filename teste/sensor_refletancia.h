@@ -1,7 +1,7 @@
 #ifndef SENSOR_REFLETANCIA_H
 #define SENSOR_REFLETANCIA_H
 
-#include <robo_hardware2.h>
+#include <robo_hardware.h>
 //#include "calibracao.h"
 
 class SensorRefletancia{

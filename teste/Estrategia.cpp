@@ -1,7 +1,7 @@
 #include "Estrategia.h"
 #include "sensores.h"
 #include "sensor_cor.h"
-#include <robo_hardware2.h>
+#include <robo_hardware.h>
 
 Estrategia::Estrategia(){
   valor_sensor_sonar_frontal = 100000000;
@@ -33,7 +33,13 @@ void Estrategia::execute(){                                   //"execute" eh fun
   else if((valor_sensor_sonar_frontal > 1) && (valor_sensor_sonar_frontal < 7)){
     contornarObstaculo();
    }
-   
+  else if (sensores.viuVerde){
+	  virarVerde();
+  }
+   else {	   
+	   seguirlinha();
+   }
+}
    void Estrategia::seguirlinha(){
 	else if (sensor.deve_seguir_em_frente()){                           //"deve_seguir_linha" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
       robo.acionarMotores(40,40);
@@ -44,7 +50,8 @@ void Estrategia::execute(){                                   //"execute" eh fun
 	else if(sensor.deve_corrigir_direita()){                    //"deve_corrigir_direita" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
       robo.acionarMotores(35, -35);                           //se a direita tiver vendo preto, ele vai girar a roda esquerda para frente e direita para tras
   }
-  
+void Estrategia::virarVerde(){  
+
 	else if (sensor.deve_girar_a_esquerda()){  
      if(sensor.eh_verde_esquerdo()){
          girar_esquerdo_verde();
@@ -62,7 +69,7 @@ void Estrategia::execute(){                                   //"execute" eh fun
           delay (200);
           robo.acionarMotores(40,40);
        }
-     //}
+     }
   }
   
   else if (sensor.deve_girar_a_direita()){                    //"deve_girar_a_esquerda" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
@@ -106,7 +113,8 @@ void Estrategia::execute(){                                   //"execute" eh fun
    }
 }
 
-}
+
+
 void Estrategia::alinhaObstaculo(){
      while(sensor.desalinhado()){
 	if (sensor.branco_branco_branco_preto() || sensor.branco_branco_preto_preto() || sensor.branco_preto_preto_preto() || 
