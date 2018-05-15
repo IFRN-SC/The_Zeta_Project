@@ -23,8 +23,8 @@ void Estrategia::calibrar(boolean realizarCalibracao){        //"calibrar" eh fu
 
 void Estrategia::execute(){                                   //"execute" eh funçao da classe "Estrategia", para o robo executar alguma açao
   valor_sensor_sonar_frontal = robo.lerSensorSonarFrontal();
-  valor_sensor_sonar_lateral_Esquerdo = robo.lerSensorSonarLateralEsquerdo();
-  valor_sensor_sonar_lateral_Direito = robo.lerSensorSonarLateralDireito();
+  valor_sensor_sonar_lateral_Esquerdo = robo.lerSensorSonarEsq();
+  valor_sensor_sonar_lateral_Direito = robo.lerSensorSonarDir();
 
   if((valor_sensor_sonar_lateral_Esquerdo > 1 && valor_sensor_sonar_lateral_Esquerdo < 10) && (valor_sensor_sonar_lateral_Direito > 1 && valor_sensor_sonar_lateral_Direito < 10)){
      rampa();
