@@ -184,7 +184,7 @@ void Calibracao::calibra_refletancia_mais_E(){       //"calibra_refletancia_mais
   
   while(!sair_menu_calibra){                                   //enquanto for diferente de "sair_menu_calibra", ele vai continuar a executar o laço
     Serial.println("CALIBRACAO DO SENSOR MAIS ESQUERDO");
-    calibraSensor(robo.lerSensorLinhaEsq(), escolhaCor(), EsqDefinitivo); //executa a funçao "calibraSensor", e recebe como parametro a funçao que ler o sensor,a funçao de escolher entre branco e preto, e a variavel com nome do sensor
+    calibraSensor(robo.lerSensorLinhaMaisEsq(), escolhaCor(), EsqDefinitivo); //executa a funçao "calibraSensor", e recebe como parametro a funçao que ler o sensor,a funçao de escolher entre branco e preto, e a variavel com nome do sensor
   }
   
   media_mais_esq= (EsqDefinitivo.preto + EsqDefinitivo.branco) * 0.5;   //"media_mais_esq" calcula a media do sensor mais esquerdo
@@ -204,7 +204,7 @@ void Calibracao::calibra_refletancia_mais_D(){       //"calibra_refletancia_mais
   
   while(!sair_menu_calibra){                                  //enquanto for diferente de "sair_menu_calibra", ele vai continuar a executar o laço
     Serial.println("CALIBRACAO DO SENSOR MAIS DIREITO");
-    calibraSensor(robo.lerSensorLinhaDir(), escolhaCor(), DirDefinitivo); //executa a funçao "calibraSensor", e recebe como parametro a funçao que ler o sensor,a funçao de escolher entre branco e preto, e a variavel com nome do sensor
+    calibraSensor(robo.lerSensorLinhaMaisDir(), escolhaCor(), DirDefinitivo); //executa a funçao "calibraSensor", e recebe como parametro a funçao que ler o sensor,a funçao de escolher entre branco e preto, e a variavel com nome do sensor
   }
   
   media_mais_dir= (DirDefinitivo.preto + DirDefinitivo.branco) * 0.5;  //"media_mais_dir" calcula a media do sensor mais direito

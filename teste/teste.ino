@@ -6,9 +6,10 @@
 Estrategia escolha;
 
 void setup(){
+  pinMode(LED_BUILTIN, OUTPUT);
   robo.configurar(false);
   Serial.begin(9600);
-  escolha.calibrar(true);
+  escolha.calibrar(false);
 }
 
 void loop(){
