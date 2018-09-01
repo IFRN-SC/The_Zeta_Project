@@ -193,10 +193,11 @@ void sensores::espereCor(){
 }
 
 void sensores::semCalibracao(){
-  sensorMaisEsquerdo.setMedia(19);
-  sensorEsquerdo.setMedia(33);
-  sensorDireito.setMedia(34);
-  sensorMaisDireito.setMedia(25);
+  sensorMaisEsquerdo.setMedia(26);
+  sensorEsquerdo.setMedia(32);
+  sensorDireito.setMedia(32);
+  sensorMaisDireito.setMedia(27
+  ~[);
 }
 
 void sensores::calibrar(){
@@ -224,7 +225,9 @@ bool sensores::deve_girar_a_esquerda(){
     return (preto_preto_branco_branco() || preto_preto_branco_preto() || preto_branco_preto_branco() || preto_preto_preto_branco());
 }
 
-bool sensores::deve_girar_a_direita(){
+bool
+
+sensores::deve_girar_a_direita(){
     return (branco_branco_preto_preto() || preto_branco_preto_preto() || branco_preto_branco_preto() || branco_preto_preto_preto());
 }
 bool sensores::encruzilhada(){
