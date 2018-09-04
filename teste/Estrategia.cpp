@@ -24,12 +24,13 @@ void Estrategia::calibrar(boolean realizarCalibracao){        //"calibrar" eh fu
 
 void Estrategia::execute(){                                   //"execute" eh funçao da classe "Estrategia", para o robo executar alguma açao
   valor_sensor_sonar_frontal = robo.lerSensorSonarFrontal();
-  /*valor_sensor_sonar_lateral_Esquerdo = robo.lerSensorSonarEsq();
+  valor_sensor_sonar_lateral_Esquerdo = robo.lerSensorSonarEsq();
   valor_sensor_sonar_lateral_Direito = robo.lerSensorSonarDir();
 
   if((valor_sensor_sonar_lateral_Esquerdo > 1 && valor_sensor_sonar_lateral_Esquerdo < 10) && (valor_sensor_sonar_lateral_Direito > 1 && valor_sensor_sonar_lateral_Direito < 10)){
      rampa();
-  }*/
+     robo.ligarLed(led); 
+  }
   //else 
   if((valor_sensor_sonar_frontal > 1) && (valor_sensor_sonar_frontal < 4)){
     robo.ligarLed(led);
@@ -43,7 +44,31 @@ void Estrategia::execute(){                                   //"execute" eh fun
   }
   else if(sensor.deve_corrigir_direita()){                    //"deve_corrigir_direita" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
       robo.acionarMotores(45, -45);                           //se a direita tiver vendo preto, ele vai girar a roda esquerda para frente e direita para tras
+  }else if(sensor.deve_girar_a_esquerda()){
+    while(!sensor.branco_branco_branco_branco()){
+      robo.acionarMotores(45,45);
+    }
+    while(sensor.eh_branco_esquerdo()){
+      robo.acionarMotores(-45, 45);  
+    }
+    while(!sensor.eh_branco_esquerdo()){
+      robo.acionarMotores(-45, 45);  
+    }
+    
+  }else if(sensor.deve_girar_a_direita()){
+    while(!sensor.branco_branco_branco_branco()){
+      robo.acionarMotores(45,45);
+    }
+    while(sensor.eh_branco_direito()){
+      robo.acionarMotores(45, -45);  
+    }
+    while(!sensor.eh_branco_direito()){
+      robo.acionarMotores(45, -45);  
+    }
+    
   }
+
+
 }/*
   
   else if (sensor.deve_girar_a_esquerda()){  
@@ -108,64 +133,63 @@ void Estrategia::execute(){                                   //"execute" eh fun
 }*/
 
 
-/*void Estrategia::alinhaObstaculo(){
-  while(sensor.desalinhado()){
+void Estrategia::alinhaObstaculo(){
   	if (sensor.branco_branco_branco_preto() || sensor.branco_branco_preto_preto() || sensor.branco_preto_preto_preto() || 
               sensor.branco_preto_branco_preto() || sensor.preto_branco_preto_preto() || sensor.branco_branco_preto_branco()){ 
-  	    robo.acionarMotores(0, 35);
+  	    robo.acionarMotores(0, -20);
   	} else if (sensor.preto_branco_branco_branco() || sensor.preto_preto_branco_branco() || sensor.preto_preto_preto_branco() || 
               sensor.preto_branco_preto_branco() || sensor.preto_preto_branco_preto() || sensor.branco_preto_branco_branco()){
-  	    robo.acionarMotores(-35, 0); 
+  	    robo.acionarMotores(-20, 0); 
   	}
-  }
-}*/         
+}         
       
 void Estrategia::contornarObstaculo(){
    robo.acionarMotores(0, 0);//vai para um tempo
-   delay(100);  
+   delay(1000);  
    
    robo.acionarMotores(-20, -20);//da rer um pouco
-   delay(100);
+   delay(600);
 
    robo.acionarMotores(0, 0);
    delay(1000);  
    
-   /*while (!sensor.preto_branco_branco_branco()){
-        robo.acionarMotores(20,-20);
+   while (!(sensor.preto_branco_branco_branco())){
+        robo.acionarMotores(-20,20);
    }
    
    robo.acionarMotores(0, 0);
-   delay(1000);  
+   delay(1000);     
    
    Estrategia::alinhaObstaculo();
    
    robo.acionarMotores(30, 30);
-   delay(800);
+   delay(1000);
+   robo.acionarMotores(0, 0);
+   delay(1100); 
+   
+   robo.acionarMotores(30, -30);
+   delay(500);
    robo.acionarMotores(0, 0);
    delay(1000); 
-   robo.acionarMotores(-30, 30);
-   delay(470);
-   robo.acionarMotores(0, 0);
-   delay(1000); 
+   
    robo.acionarMotores(30, 30);
    delay(1400);
    robo.acionarMotores(0, 0);
    delay(1000); 
-   robo.acionarMotores(-30, 30);
-   delay(470);
+   
+   robo.acionarMotores(30, -30);
+   delay(500);
    robo.acionarMotores(0, 0);
    delay(1000); 
 
    while (sensor.branco_branco_branco_branco()){
-	robo.acionarMotores(30, 30);
+	  robo.acionarMotores(30, 30);
    }
-   robo.acionarMotores(30, 30);
-   delay(250);
    
-   while (!sensor.branco_branco_preto_branco()){
-	robo.acionarMotores(30,-30);
-   }
-   robo.acionarMotores(0,0);*/
+   //while (!sensor.branco_branco_preto_branco()){
+	 // robo.acionarMotores(-30,30);
+   //}
+   //robo.acionarMotores(0,0);
 }
  
 /*void Estrategia::girar_esquerdo_verde(){
@@ -184,22 +208,22 @@ void Estrategia::girar_direito_verde(){
     while(sensor.eh_branco_direito()){
       robo.acionarMotores(-40, 40);
     }
-}
+}*/
 
 void Estrategia::rampa(){
   if(sensor.branco_preto_branco_branco()){
-     robo.acionarMotores(55, 40); 
+     robo.acionarMotores(65, 50); 
   }
   else if(sensor.branco_branco_preto_branco()){
-      robo.acionarMotores(40, 55);
+      robo.acionarMotores(50, 65);
   }
   else if(sensor.preto_branco_branco_branco()){
-      robo.acionarMotores(45, -20);
+      robo.acionarMotores(55, -30);
   }
   else if(sensor.branco_branco_branco_preto()){
-      robo.acionarMotores(-20, 45);
+      robo.acionarMotores(-30, 55);
   }
   else{
-      robo.acionarMotores(45, 45);
+      robo.acionarMotores(55, 55);
   }
-}*/
+}
