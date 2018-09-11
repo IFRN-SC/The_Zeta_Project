@@ -197,10 +197,10 @@ void sensores::semCalibracao(){
         28.105
         31
         24.92*/
-  sensorMaisEsquerdo.setMedia(22);
-  sensorEsquerdo.setMedia(28);
-  sensorDireito.setMedia(31);
-  sensorMaisDireito.setMedia(25);
+  sensorMaisEsquerdo.setMedia(26);
+  sensorEsquerdo.setMedia(34);
+  sensorDireito.setMedia(34);
+  sensorMaisDireito.setMedia(29);
 
   
   
