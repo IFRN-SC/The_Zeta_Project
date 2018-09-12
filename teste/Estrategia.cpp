@@ -147,7 +147,7 @@ void Estrategia::contornarObstaculo(){
    robo.acionarMotores(0, 0);//vai para um tempo
    delay(1000);  
    
-   robo.acionarMotores(-20, -20);//da rer um pouco
+   robo.acionarMotores(-22, -25);//da rer um pouco
    delay(600);
 
    robo.acionarMotores(0, 0);
@@ -186,13 +186,13 @@ void Estrategia::contornarObstaculo(){
 	  robo.acionarMotores(30, 30);
    }
    
-   //while (!sensor.branco_branco_preto_branco()){
-	 // robo.acionarMotores(-30,30);
-   //}
-   //robo.acionarMotores(0,0);
+   while (!sensor.branco_branco_preto_branco()){
+	 robo.acionarMotores(-30,30);
+   }
+   robo.acionarMotores(0,0);
 }
  
-/*void Estrategia::girar_esquerdo_verde(){
+void Estrategia::girar_esquerdo_verde(){
     while(sensor.eh_preto_esquerdo()){
       robo.acionarMotores(40,-40);
     }
@@ -208,7 +208,7 @@ void Estrategia::girar_direito_verde(){
     while(sensor.eh_branco_direito()){
       robo.acionarMotores(-40, 40);
     }
-}*/
+}
 
 void Estrategia::rampa(){
   if(sensor.branco_preto_branco_branco()){
