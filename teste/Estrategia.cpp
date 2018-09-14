@@ -54,7 +54,7 @@ void Estrategia::execute(){                                   //"execute" eh fun
     while(!sensor.eh_branco_esquerdo()){
       robo.acionarMotores(-45, 45);  
     }
-    
+      
   }else if(sensor.deve_girar_a_direita()){
     while(!sensor.branco_branco_branco_branco()){
       robo.acionarMotores(45,45);
