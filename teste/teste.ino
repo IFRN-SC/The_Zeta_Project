@@ -3,10 +3,21 @@
 #include "sensores.h"
 #include "Estrategia.h"
 
+#define COR_ESQ 50
+#define COR_DIR 38
+
 Estrategia escolha;
 
 void setup(){
   pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(COR_ESQ,OUTPUT);
+  pinMode(COR_DIR,OUTPUT);
+  
+  digitalWrite(COR_DIR, HIGH);
+  digitalWrite(COR_ESQ, HIGH);
+  
+  robo.habilitaTCS34();
+  
   robo.configurar(false);
   Serial.begin(9600);
   //repetir 10 vezes
