@@ -27,7 +27,7 @@ void Estrategia::calibrar(boolean realizarCalibracao){        //"calibrar" eh fu
 void Estrategia::execute(){                                   //"execute" eh funçao da classe "Estrategia", para o robo executar alguma açao
   valor_sensor_sonar_frontal = robo.lerSensorSonarFrontal();
   valor_sensor_sonar_lateral_Esquerdo = robo.lerSensorSonarEsq();
-  valor_sensor_sonar_lateral_Direito = robo.lerSensorSonarDir();
+  valor_sensor_sonar_lateral_Direito =  robo.lerSensorSonarDir();
 
   if((valor_sensor_sonar_lateral_Esquerdo > 1 && valor_sensor_sonar_lateral_Esquerdo < 10) && (valor_sensor_sonar_lateral_Direito > 1 && valor_sensor_sonar_lateral_Direito < 10)){
      rampa();
@@ -71,7 +71,7 @@ void Estrategia::execute(){                                   //"execute" eh fun
   }
 
 
-/*}
+
   
   else if (sensor.deve_girar_a_esquerda()){  
      if(sensor.eh_verde_esquerdo()){
@@ -90,14 +90,14 @@ void Estrategia::execute(){                                   //"execute" eh fun
           delay (200);
           robo.acionarMotores(40,40);
        }
-     //}
+     }
   }
   
   else if (sensor.deve_girar_a_direita()){                    //"deve_girar_a_esquerda" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
      if(sensor.eh_verde_direito()){
          robo.acionarMotores(40, -40);
      }    //"deve_girar_a_esquerda" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
-     else{*/
+     else{
        /*while  (sensor.branco_branco_preto_preto()){             //enquanto ele ver branco_branco_preto_preto, ele vai para frente por 100 milisegundos
           robo.acionarMotores(40,40);	
           delay (100);
@@ -113,6 +113,8 @@ void Estrategia::execute(){                                   //"execute" eh fun
        }
      //}
    }*/
+     }
+  }
    else if(sensor.encruzilhada()){
        robo.acionarMotores(0,0);
        
