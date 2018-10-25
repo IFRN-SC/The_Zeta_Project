@@ -216,13 +216,13 @@ void Estrategia::girar_direito_verde(){
 }
 
 void Estrategia::rampa(){
-  robo.acionarMotores(30,-30);
+  /*robo.acionarMotores(30,-30);
   delay(250);
 
   while((!robo.fimDeCurso1Pressionado()) && (!robo.fimDeCurso2Pressionado()) ) {
      robo.acionarMotores(-30,-30);
-  }
-  /*if(sensor.branco_preto_branco_branco()){
+  }*/
+  if(sensor.branco_preto_branco_branco()){
      robo.acionarMotores(65, 50); 
   }
   else if(sensor.branco_branco_preto_branco()){
@@ -236,5 +236,5 @@ void Estrategia::rampa(){
   }
   else{
       robo.acionarMotores(55, 55);
-  }*/
+  }
 }

@@ -196,7 +196,7 @@ void sensores::semCalibracao(){
   sensorMaisEsquerdo.setMedia(20);
   sensorEsquerdo.setMedia(19);
   sensorDireito.setMedia(20);
-  sensorMaisDireito.setMedia(11);
+  sensorMaisDireito.setMedia(15);
   
 }
 
