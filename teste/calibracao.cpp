@@ -24,7 +24,10 @@ void Calibracao::calibraCorEsquerdo(SensorDeCor sensorCor){
   sensorCor.setCinza(robo.getHSVEsquerdo());
   
   sensorCor.calibra();
-  
+
+  /*pode ser feito aqui
+  ex:valor.refletancia_mais_esq= media_mais_esq;                 
+  robo.salvarCalibracao(valor);*/
 }
 
 void Calibracao::calibraCorDireito(SensorDeCor sensorCor){

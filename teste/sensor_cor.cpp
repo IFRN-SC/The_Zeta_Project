@@ -27,6 +27,11 @@ void SensorDeCor::calibra(){
   Serial.println("    ");
   Serial.print("v-Branco Preto");
   Serial.println(vBrancoPreto);
+
+  
+  /*pode ser feito aqui
+  ex:valor.refletancia_mais_esq= media_mais_esq;                 
+  robo.salvarCalibracao(valor);*/
 }
 
 void SensorDeCor::atualizarHSV(HSV hsvAt){
@@ -80,7 +85,9 @@ void SensorDeCor::setCinza(HSV cinzaAt){
 }
 
 
-float SensorDeCor:: media(int num1, int num2){ return (num1 + num2)/2; }
+float SensorDeCor:: media(int num1, int num2){ 
+  return (num1 + num2)/2; 
+}
 
 void SensorDeCor::calibrar(){
   vCinzaBranco = (cinza.v + branco.v)/2;

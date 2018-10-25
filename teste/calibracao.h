@@ -22,8 +22,8 @@ class Calibracao{                 //classe "Calibracao"
     bool sair_menu_calibra = false; //variavel para sair do menur de calibracao
     
   public:
-    void calibraCorEsquerdo(SensorDeCor sensor);
-    void calibraCorDireito(SensorDeCor sensor);
+    void calibraCorEsquerdo(SensorDeCor sensorCor);
+    void calibraCorDireito(SensorDeCor sensorCor);
     void espera();
     void menu_geral(SensorDeCor sensorEsquerdo, SensorDeCor sensorDireito);
     void menu_cor(SensorDeCor sensorEsquerdo, SensorDeCor sensorDireito);
@@ -49,5 +49,3 @@ class Calibracao{                 //classe "Calibracao"
 };  
 
 #endif
-
-
