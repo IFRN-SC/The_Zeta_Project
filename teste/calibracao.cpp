@@ -9,39 +9,39 @@ void Calibracao::espera(){
   }
 }
 
-void Calibracao::calibraCorEsquerdo(SensorDeCor sensor){
+void Calibracao::calibraCorEsquerdo(SensorDeCor sensorCor){
   Serial.println("CALIBRE HSV DO BRANCO");
   espera();
-  sensor.setBranco(robo.getHSVEsquerdo()) ;
+  sensorCor.setBranco(robo.getHSVEsquerdo()) ;
   Serial.println("CALIBRE HSV DO PRETO");
   espera();
-  sensor.setPreto(robo.getHSVEsquerdo());
+  sensorCor.setPreto(robo.getHSVEsquerdo());
   Serial.println("CALIBRE HSV DO VERDE");
   espera();
-  sensor.setVerde(robo.getHSVEsquerdo());
+  sensorCor.setVerde(robo.getHSVEsquerdo());
   Serial.println("CALIBRE HSV DO CINZA");
   espera();
-  sensor.setCinza(robo.getHSVEsquerdo());
+  sensorCor.setCinza(robo.getHSVEsquerdo());
   
-  sensor.calibra();
+  sensorCor.calibra();
   
 }
 
-void Calibracao::calibraCorDireito(SensorDeCor sensor){
+void Calibracao::calibraCorDireito(SensorDeCor sensorCor){
   Serial.println("CALIBRE HSV DO BRANCO");
   espera();
-  sensor.setBranco(robo.getHSVDireito()) ;
+  sensorCor.setBranco(robo.getHSVDireito()) ;
   Serial.println("CALIBRE HSV DO PRETO");
   espera();
-  sensor.setPreto(robo.getHSVDireito());
+  sensorCor.setPreto(robo.getHSVDireito());
   Serial.println("CALIBRE HSV DO VERDE");
   espera();
-  sensor.setVerde(robo.getHSVDireito());
+  sensorCor.setVerde(robo.getHSVDireito());
   Serial.println("CALIBRE HSV DO CINZA");
   espera();
-  sensor.setCinza(robo.getHSVDireito());
+  sensorCor.setCinza(robo.getHSVDireito());
   
-  sensor.calibra();
+  sensorCor.calibra();
   
 }
 
