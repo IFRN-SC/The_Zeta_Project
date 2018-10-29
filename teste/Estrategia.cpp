@@ -138,7 +138,7 @@ void Estrategia::execute(){                                   //"execute" eh fun
 
 
 void Estrategia::alinhaObstaculo(){
-  robo.ligarLed(led3);
+  robo.ligarLed(led2);
   	if (sensor.branco_branco_branco_preto() || sensor.branco_branco_preto_preto() || sensor.branco_preto_preto_preto() || 
               sensor.branco_preto_branco_preto() || sensor.preto_branco_preto_preto() || sensor.branco_branco_preto_branco()){ 
   	    robo.acionarMotores(-20,20);
@@ -163,9 +163,13 @@ void Estrategia::contornarObstaculo(){
    }
    
    robo.acionarMotores(0, 0);
-   delay(1000);     
+   delay(1000); 
+
+   while(!(sensor.eh_preto_mais_direito())){
+        robo.acionarMotores(0,30);
+   }
    
-   Estrategia::alinhaObstaculo();
+   //Estrategia::alinhaObstaculo();
    robo.desligarLed(led3);
    robo.acionarMotores(30, 30);//anda em paralelo ao robo
    delay(1200);
