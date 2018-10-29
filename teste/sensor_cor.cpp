@@ -13,19 +13,19 @@ void SensorDeCor::calibra(){
   vVerdePreto = preto.v + 5;
   hVerdePreto = media(preto.h,verde.h) + AJUSTE_1 ;
   vBrancoPreto = media(branco.v,preto.v);
-  Serial.print("v-Cinza Branco");
+  Serial.print(F("v-Cinza Branco"));
   Serial.println(vCinzaBranco);
   Serial.println("    ");
-  Serial.print("v-Branco Verde");
+  Serial.print(F("v-Branco Verde"));
   Serial.println(vBrancoVerde);
   Serial.println("    ");
-  Serial.print("v-Verde Preto");
+  Serial.print(F("v-Verde Preto"));
   Serial.println(vVerdePreto);
   Serial.println("    ");
-  Serial.print("h-Verde Preto");
+  Serial.print(F("h-Verde Preto"));
   Serial.println(hVerdePreto);
   Serial.println("    ");
-  Serial.print("v-Branco Preto");
+  Serial.print(F("v-Branco Preto"));
   Serial.println(vBrancoPreto);
 
   
