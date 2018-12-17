@@ -48,8 +48,8 @@ class pinagem{
   //*********PINOS PARA SENSORES DE REFLETANCIA*********//
   #define SENSOR_LINHA_MAIS_ESQUERDO	 A1	//Define o pino do sensor de refletancia esquerdo 
   #define SENSOR_LINHA_ESQUERDO	       A2	//Define o pino do sensor de refletancia esquerdo 
-  #define SENSOR_LINHA_DIREITO	       A0	//Define o pino do sensor de refletancia direito
-  #define SENSOR_LINHA_MAIS_DIREITO		 A3	//Define o pino do sensor de refletancia direito
+  #define SENSOR_LINHA_DIREITO	       A3	//Define o pino do sensor de refletancia direito
+  #define SENSOR_LINHA_MAIS_DIREITO		 A0	//Define o pino do sensor de refletancia direito
 
 	//A biblioteca possui dois sensores de cor: um esquerdo e outro direito.
 	//cada sensor de cor precisa de 3 pinos para configuracao e leitura da cor
@@ -73,7 +73,7 @@ class pinagem{
 	#define SONAR_ECHO_ESQ		24 
 
 	#define SONAR_TRIGGER_DIR	23 
-	#define SONAR_ECHO_DIR		25 
+	#define SONAR_ECHO_DIR		25
 	
 //Pinos exclusivo para arduino mega
 

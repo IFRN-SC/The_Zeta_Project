@@ -8,7 +8,7 @@
 
 class Calibracao{                 //classe "Calibracao"
 //Dentro da classe esta a declaraçao das variveis(atribuitos) usadas, sendo elas:
-//privadas(private)- as variaveis ou as funçoes, so podem ser acessado apenas pela classe
+//privadas(private)- as variaveis ou as funçes, so podem ser acessado apenas pela classe
 //publicos(public)- as variaveis ou as funçoes, pode ser acessado por qualquer outra classe
 
   private: 
@@ -19,18 +19,16 @@ class Calibracao{                 //classe "Calibracao"
     float media_mais_esq;           //armazena o valor calibrado do sensor de refletancia "MAIS ESQUERDO"
     float media_mais_dir;           //armazena o valor calibrado do sensor de refletancia "MAIS DIREITO"
     char S;                         //variavel responsavel por sair do laço
-    bool sair_menu_calibra = false; //variavel para sair do menu de calibracao
-    char escolha;                   // variavel responsavel para afirmar que esta no posicionamento correto
+    bool sair_menu_calibra = false; //variavel para sair do menur de calibracao
     
   public:
-    void calibraCorEsquerdo(SensorDeCor sensor);
-    void calibraCorDireito(SensorDeCor sensor);
+    void calibraCorEsquerdo(SensorDeCor sensorCor);
+    void calibraCorDireito(SensorDeCor sensorCor);
     void espera();
     void menu_geral(SensorDeCor sensorEsquerdo, SensorDeCor sensorDireito);
     void menu_cor(SensorDeCor sensorEsquerdo, SensorDeCor sensorDireito);
-    void menu_refletancia();          //declaraçao da funçao "menu", ou seja, a funçao principal da classe calibracao
-    void aguardaPosicionamento();
-    void calibra_todos_brancos();    // declaração da função para calibrar todos os sensores de refletancia, quando todos estiverem obtendo a  cor branca 
+    void menu_refletancia();                    //declaraçao da funçao "menu", ou seja, a funçao principal da classe calibracao
+    void calibra_todos_brancos();  //declaração da função para calibrar todos os sensores de refletancia, quando estiverem no branco
     void calibra_refletancia_E();   //declaraçao da funçao para calibrar o sensor de refletancia "ESQUERDO", ele retorna a media calculada no sensor esquerdo
     void calibra_refletancia_D();   //declaraçao da funçao para calibrar o sensor de refletancia "DIREITO", retorna a media calculada
     void calibra_refletancia_mais_E();//declaraçao da funçao para calibrar o sensor de refletancia "MAIS ESQUERDO", retorna a media calculada
