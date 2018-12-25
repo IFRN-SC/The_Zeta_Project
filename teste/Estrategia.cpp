@@ -30,7 +30,8 @@ void Estrategia::execute(){                                   //"execute" eh fun
   valor_sensor_sonar_lateral_Direito =  robo.lerSensorSonarDir();
 
   if((valor_sensor_sonar_lateral_Esquerdo > 1 && valor_sensor_sonar_lateral_Esquerdo < 10) && (valor_sensor_sonar_lateral_Direito > 1 && valor_sensor_sonar_lateral_Direito < 10)){
-     rampa();
+     subir_rampa();
+     
      robo.ligarLed(led); 
   }
   //else 
@@ -68,11 +69,7 @@ void Estrategia::execute(){                                   //"execute" eh fun
       robo.acionarMotores(40, -40);  
     }
     
-  }
-
-
-
-  
+  }  
   else if (sensor.deve_girar_a_esquerda()){  
      if(sensor.eh_verde_esquerdo()){
          girar_esquerdo_verde();
@@ -171,7 +168,7 @@ void Estrategia::contornarObstaculo(){
    
    //Estrategia::alinhaObstaculo();
    robo.desligarLed(led3);
-   robo.acionarMotores(30, 30);//anda em paralelo ao robo
+   robo.acionarMotores(35, 35);//anda em paralelo ao robo
    delay(1200);
    robo.acionarMotores(0, 0);
    delay(1100); 
@@ -181,7 +178,7 @@ void Estrategia::contornarObstaculo(){
    robo.acionarMotores(0, 0);
    delay(1000); 
    
-   robo.acionarMotores(30, 30);//anda pra frente, lado a lado ao robo
+   robo.acionarMotores(35, 35);//anda pra frente, lado a lado ao robo
    delay(1400);
    robo.acionarMotores(0, 0);
    delay(1000); 
@@ -219,7 +216,7 @@ void Estrategia::girar_direito_verde(){
     }
 }
 
-void Estrategia::rampa(){
+void Estrategia::subir_rampa(){
   /*robo.acionarMotores(30,-30);
   delay(250);
 
@@ -227,18 +224,18 @@ void Estrategia::rampa(){
      robo.acionarMotores(-30,-30);
   }*/
   if(sensor.branco_preto_branco_branco()){
-     robo.acionarMotores(65, 50); 
+     robo.acionarMotores(75, 60); 
   }
   else if(sensor.branco_branco_preto_branco()){
-      robo.acionarMotores(50, 65);
+      robo.acionarMotores(60, 75);
   }
   else if(sensor.preto_branco_branco_branco()){
-      robo.acionarMotores(55, -40);
+      robo.acionarMotores(55, -30);
   }
   else if(sensor.branco_branco_branco_preto()){
-      robo.acionarMotores(-40, 55);
+      robo.acionarMotores(-30, 55);
   }
   else{
-      robo.acionarMotores(55, 55);
+      robo.acionarMotores(85, 85);
   }
 }

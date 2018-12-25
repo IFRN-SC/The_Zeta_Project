@@ -12,7 +12,7 @@ class Estrategia{              //classe Estrategia
     void contornarObstaculo();
     void girar_esquerdo_verde();
     void girar_direito_verde();
-    void rampa();
+    void subir_rampa();
     
   private:                    //todos as variaveis funçoes privadas s podem ser acessadas na classe em que foi criada
     sensores sensor;            //"sensor"  o objeto da classe "sensores". objeto criado para usar as funçoes criadas dentro da classe "sensores"
@@ -20,7 +20,3 @@ class Estrategia{              //classe Estrategia
     float valor_sensor_sonar_lateral_Esquerdo;
     float valor_sensor_sonar_lateral_Direito;
 };
-
-
-
-
