@@ -11,16 +11,20 @@ void Calibracao::espera(){
 
 void Calibracao::calibraCorEsquerdo(SensorDeCor sensorCor){
   Serial.println(F("CALIBRE HSV DO BRANCO"));
-  espera();
+  //espera();
+  aguardaPosicionamentoCor();    
   sensorCor.setBranco(robo.getHSVEsquerdo()) ;
   Serial.println(F("CALIBRE HSV DO PRETO"));
-  espera();
+  //espera();
+  aguardaPosicionamentoCor();    
   sensorCor.setPreto(robo.getHSVEsquerdo());
   Serial.println(F("CALIBRE HSV DO VERDE"));
-  espera();
+  //espera();
+  aguardaPosicionamentoCor();    
   sensorCor.setVerde(robo.getHSVEsquerdo());
   Serial.println(F("CALIBRE HSV DO CINZA"));
-  espera();
+  //espera();
+  aguardaPosicionamentoCor();    
   sensorCor.setCinza(robo.getHSVEsquerdo());
   
   sensorCor.calibra();
@@ -28,21 +32,24 @@ void Calibracao::calibraCorEsquerdo(SensorDeCor sensorCor){
 
 void Calibracao::calibraCorDireito(SensorDeCor sensorCor){
   Serial.println(F("CALIBRE HSV DO BRANCO"));
-  espera();
-  sensorCor.setBranco(robo.getHSVDireito()) ;
+  //espera(); VER SE NECESSITAR DESTA FUNÇÃO AQUI
+  aguardaPosicionamentoCor();             
+  sensorCor.setBranco(robo.getHSVDireito());
   Serial.println(F("CALIBRE HSV DO PRETO"));
-  espera();
+  //espera();
+  aguardaPosicionamentoCor(); 
   sensorCor.setPreto(robo.getHSVDireito());
   Serial.println(F("CALIBRE HSV DO VERDE"));
-  espera();
+  //espera();
+  aguardaPosicionamentoCor(); 
   sensorCor.setVerde(robo.getHSVDireito());
   Serial.println(F("CALIBRE HSV DO CINZA"));
-  espera();
+  //espera();
+  aguardaPosicionamentoCor(); 
   sensorCor.setCinza(robo.getHSVDireito());
-  
+ 
   sensorCor.calibra();
 }
-
 
 
 void Calibracao::menu_geral(SensorDeCor sensorEsquerdo, SensorDeCor sensorDireito){
@@ -53,13 +60,10 @@ void Calibracao::menu_geral(SensorDeCor sensorEsquerdo, SensorDeCor sensorDireit
       Serial.println(F("Para calibrar sensor de REFLETANCIA aperte R"));
       Serial.println(F("Para calibrar sensor de COR aperte C"));               //avisa qual letra apertar para calibrar o esquerdo
       Serial.println(F("Para sair aperte S"));      
-      
-      
-      char espera_ler = esperaLer();
-      
+            
+      char espera_ler = esperaLer();      
 
-      switch(espera_ler){                                        //switch(escolha caso), recebe como parametro a variavel "espera_ler"
-        
+      switch(espera_ler){                                        //switch(escolha caso), recebe como parametro a variavel "espera_ler"        
         case 'R':
             menu_refletancia();                            //caso seja "E", ele executa a funçao "calibra_refletancia_E()"
             break;
@@ -85,16 +89,14 @@ void Calibracao::menu_cor(SensorDeCor sensorEsquerdo, SensorDeCor sensorDireito)
       char espera_ler = esperaLer();                             //a variavel "espera_ler" que retorna um char, recebe a funçao de "esperaLer()"
       
       switch(espera_ler){                                        //switch(escolha caso), recebe como parametro a variavel "espera_ler"
-        
-        case 'E':
+         case 'E':
             calibraCorEsquerdo(sensorEsquerdo);                           
             break;
         case 'D':
             calibraCorDireito(sensorDireito);
             break;
         case 'S':
-          sair_menu_cor=true;
-          
+          sair_menu_cor=true;          
       }
     }
 }
@@ -136,9 +138,7 @@ void Calibracao::menu_refletancia(){                                            
     }
 }
 
-
-void Calibracao::calibra_todos_brancos(){
-}
+void Calibracao::calibra_todos_brancos(){}
 /*
   Refletancia EsqDefinitivo;  
   Refletancia DirDefinitivo;
@@ -194,7 +194,7 @@ void Calibracao::calibra_refletancia_E(){           //"calibra_refletancia_E()" 
   
   while(!sair_menu_calibra){                                      //enquanto for diferente de "sair_menu_calibra", ou seja, o contrario, ele vai continuar a executar o laço
     Serial.println(F("CALIBRACAO DO SENSOR ESQUERDO"));
-    calibraSensor(robo.lerSensorLinhaEsq(), escolhaCor(), EsqDefinitivo); //executa a funçao "calibraSensor", e recebe como parametro a funçao que ler o sensor,a funçao de escolher entre branco e preto, e a variavel com nome do sensor
+    calibraSensor(robo.lerSensorLinhaEsq(), escolhaCorRefletancia(), EsqDefinitivo); //executa a funçao "calibraSensor", e recebe como parametro a funçao que ler o sensor,a funçao de escolher entre branco e preto, e a variavel com nome do sensor
   }
   
   media_esq= (EsqDefinitivo.preto + EsqDefinitivo.branco) * 0.5; //"media_esq" calcula a media do sensor esquerdo
@@ -206,7 +206,8 @@ void Calibracao::calibra_refletancia_E(){           //"calibra_refletancia_E()" 
   robo.salvarCalibracao(valor);                                 //funçao "salvarCalibracao" recebe como parametro o objeto "valor"
 }
 
-void Calibracao::calibra_refletancia_D(){               //"calibra_refletancia_D()" eh a funçao da classe "calibracao", para calibrar o sensor de refletancia DIREITO
+
+void Calibracao:: calibra_refletancia_D(){               //"calibra_refletancia_D()" eh a funçao da classe "calibracao", para calibrar o sensor de refletancia DIREITO
   Refletancia DirDefinitivo;                                    //struct do sensor de refletancia direito, que dentro dela tem as variaveis preto e branco
   DirDefinitivo.preto=0;                                        //a variavel "preto" do sensor de refletancia direito, recebe como valor inicial "0"
   DirDefinitivo.branco=100;                                     //a variavel "branco" do sensor de refletancia direito, recebe como valor inicial "100"
@@ -214,7 +215,7 @@ void Calibracao::calibra_refletancia_D(){               //"calibra_refletancia_D
   
   while(!sair_menu_calibra){                                    //enquanto for diferente de "sair_menu_calibra", ele vai continuar a executar o laço
     Serial.println(F("CALIBRACAO DO SENSOR DIREITO"));
-    calibraSensor(robo.lerSensorLinhaDir(), escolhaCor(), DirDefinitivo); //executa a funçao "calibraSensor", e recebe como parametro a funçao que ler o sensor,a funçao de escolher entre branco e preto, e a variavel com nome do sensor
+    calibraSensor(robo.lerSensorLinhaDir(), escolhaCorRefletancia(), DirDefinitivo); //executa a funçao "calibraSensor", e recebe como parametro a funçao que ler o sensor,a funçao de escolher entre branco e preto, e a variavel com nome do sensor
   }
   
   media_dir= (DirDefinitivo.preto + DirDefinitivo.branco) * 0.5;  //"media_dir" calcula a media do sensor direito
@@ -234,7 +235,7 @@ void Calibracao::calibra_refletancia_mais_E(){       //"calibra_refletancia_mais
   
   while(!sair_menu_calibra){                                   //enquanto for diferente de "sair_menu_calibra", ele vai continuar a executar o laço
     Serial.println(F("CALIBRACAO DO SENSOR MAIS ESQUERDO"));
-    calibraSensor(robo.lerSensorLinhaMaisEsq(), escolhaCor(), EsqDefinitivo); //executa a funçao "calibraSensor", e recebe como parametro a funçao que ler o sensor,a funçao de escolher entre branco e preto, e a variavel com nome do sensor
+    calibraSensor(robo.lerSensorLinhaMaisEsq(), escolhaCorRefletancia(), EsqDefinitivo); //executa a funçao "calibraSensor", e recebe como parametro a funçao que ler o sensor,a funçao de escolher entre branco e preto, e a variavel com nome do sensor
   }
   
   media_mais_esq= (EsqDefinitivo.preto + EsqDefinitivo.branco) * 0.5;   //"media_mais_esq" calcula a media do sensor mais esquerdo
@@ -254,7 +255,7 @@ void Calibracao::calibra_refletancia_mais_D(){       //"calibra_refletancia_mais
   
   while(!sair_menu_calibra){                                  //enquanto for diferente de "sair_menu_calibra", ele vai continuar a executar o laço
     Serial.println(F("CALIBRACAO DO SENSOR MAIS DIREITO"));
-    calibraSensor(robo.lerSensorLinhaMaisDir(), escolhaCor(), DirDefinitivo); //executa a funçao "calibraSensor", e recebe como parametro a funçao que ler o sensor,a funçao de escolher entre branco e preto, e a variavel com nome do sensor
+    calibraSensor(robo.lerSensorLinhaMaisDir(), escolhaCorRefletancia(), DirDefinitivo); //executa a funçao "calibraSensor", e recebe como parametro a funçao que ler o sensor,a funçao de escolher entre branco e preto, e a variavel com nome do sensor
   }
   
   media_mais_dir= (DirDefinitivo.preto + DirDefinitivo.branco) * 0.5;  //"media_mais_dir" calcula a media do sensor mais direito
@@ -266,7 +267,7 @@ void Calibracao::calibra_refletancia_mais_D(){       //"calibra_refletancia_mais
   robo.salvarCalibracao(valor);                                //funçao "salvarCalibracao" recebe como parametro o objeto "valor"
 }
 
-char Calibracao::escolhaCor(){                                 //funçao "escolhaCor" da classe "Calibracao"
+char Calibracao::escolhaCorRefletancia(){                                 //funçao "escolhaCor" da classe "Calibracao"
   Serial.println(F("Para calibrar no PRETO aperte P"));           
   Serial.println(F("Para calibrar no BRANCO aperte B"));
   Serial.println(F("Para sair aperte S"));
@@ -279,16 +280,17 @@ char Calibracao::escolhaCor(){                                 //funçao "escolh
 bool Calibracao::calibraSensor(float valorAtual, char espera_ler, Refletancia &Definitivo){//funçao "calibraSensor" da classe "Calibracao", "valorAtual" recebe o valor lido na hora pelo sensor, "espera_ler" retorna a cor escolhida, a Struct Refletancia retorna qual o sensor
    sair_menu_calibra = false;
    Serial.println(valorAtual);
-    switch(espera_ler){
-      
+    switch(espera_ler){     
       
       case 'P':
+	      aguardaPosicionamentoRefletancia();
         Serial.print(F("Esquerdo preto atual é: "));          
         Serial.println(valorAtual);                           //imprime na tela o valor lido no preto
         Definitivo.preto = descubraMaior(Definitivo.preto, valorAtual);//armazena no definivo.preto, a funçao de descubrir o maior valor, que recebe como parametro o valo definitivo e o atual
         break;
         
       case 'B':
+	      aguardaPosicionamentoRefletancia();
         Serial.print(F("Esquerdo branco atual é: "));
         Serial.println(valorAtual);                         //imprime na tela o valor lido no branco
         Definitivo.branco = descubraMenor(Definitivo.branco, valorAtual);//armazena no definivo.branco, a funçao de descubrir o menor valor, que recebe como parametro o valo definitivo e o atual
@@ -303,6 +305,49 @@ bool Calibracao::calibraSensor(float valorAtual, char espera_ler, Refletancia &D
   Serial.print(F("EsqDefinitivo.branco"));
   Serial.println(Definitivo.branco);                     //imprime o valor armazenado como definitivo branco 
     return sair_menu_calibra;
+}
+
+void Calibracao::aguardaPosicionamentoRefletancia() {
+  Serial.println(F("ATENÇÃO!"));
+  Serial.println(F("Insira algo quando estiver posicionado de forma correta"));
+ // while(1) {
+ // Serial.read();
+  while(Serial.available() == 0) {
+    Serial.print("Esq: ");
+    Serial.print(robo.lerSensorLinhaEsq());
+    Serial.print("+Esq: ");
+    Serial.print(robo.lerSensorLinhaMaisEsq());   
+    Serial.print("Dir: ");
+    Serial.print(robo.lerSensorLinhaDir());
+    Serial.print("+Dir: ");
+    Serial.print(robo.lerSensorLinhaMaisDir());
+    Serial.println(" ");
+    delay(2000);
+    if(Serial.available()) {
+      Serial.read();
+      break;
+    }
+  }
+}
+
+void Calibracao::aguardaPosicionamentoCor() {
+  Serial.println("ATENÇÃO!");
+  Serial.println(("Insira algo quando estiver posicionado de forma correta"));
+ // while(1) {
+ // Serial.read();
+  while(Serial.available() == 0) {
+  Serial.println("CALIBRE HSV ESQUERDO");
+// Serial.print(robo.getHSVEsquerdo());
+//Serial.print(robo.getHSVEsquerdo());
+//Serial.println("CALIBRE HSV DIREITO");
+// Serial.print(sensorCor.setBranco(robo.getHSVDireito());
+ 
+    delay(2000);
+    if(Serial.available()) {
+      Serial.read();
+      break;
+    }
+  }
 }
 
 float Calibracao::descubraMaior(float valor1, float valor2){  //funçao para encontrar o maior valor, usada para achar o maior preto
