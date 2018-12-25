@@ -28,12 +28,14 @@ class Calibracao{                 //classe "Calibracao"
     void menu_geral(SensorDeCor sensorEsquerdo, SensorDeCor sensorDireito);
     void menu_cor(SensorDeCor sensorEsquerdo, SensorDeCor sensorDireito);
     void menu_refletancia();                    //declaraçao da funçao "menu", ou seja, a funçao principal da classe calibracao
+    void aguardaPosicionamentoCor(); 
+    void aguardaPosicionamentoRefletancia(); // declaração da função para vizualizar os valores do sensores de refletancia antes de calibrar
     void calibra_todos_brancos();  //declaração da função para calibrar todos os sensores de refletancia, quando estiverem no branco
     void calibra_refletancia_E();   //declaraçao da funçao para calibrar o sensor de refletancia "ESQUERDO", ele retorna a media calculada no sensor esquerdo
     void calibra_refletancia_D();   //declaraçao da funçao para calibrar o sensor de refletancia "DIREITO", retorna a media calculada
     void calibra_refletancia_mais_E();//declaraçao da funçao para calibrar o sensor de refletancia "MAIS ESQUERDO", retorna a media calculada
     void calibra_refletancia_mais_D();//declaraçao da funçao para calibrar o sensor de refletancia "MAIS DIREITO", retorna a media calculada
-    char escolhaCor();                //declaraçao da funçao que pergunta qual cor vc deseja, preto ou branco
+    char escolhaCorRefletancia();                //declaraçao da funçao que pergunta qual cor vc deseja, preto ou branco
     bool calibraSensor(float valorAtual, char espera_ler, Refletancia &Definitivo);//funçao que faz a calibraçao dos sensores de refletancia
     float descubraMaior(float valor1, float valor2);//declaraçao da funçao que retorna qual o maior valor
     float descubraMenor(float valor1, float valor2);//declaraçao da funçao que retorna qual o menor valor
