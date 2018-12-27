@@ -313,15 +313,15 @@ void Calibracao::aguardaPosicionamentoRefletancia() {
  // while(1) {
  // Serial.read();
   while(Serial.available() == 0) {
-    Serial.print("Esq: ");
+    Serial.print(F("Esq: "));
     Serial.print(robo.lerSensorLinhaEsq());
-    Serial.print("+Esq: ");
+    Serial.print(F("+Esq: "));
     Serial.print(robo.lerSensorLinhaMaisEsq());   
-    Serial.print("Dir: ");
+    Serial.print(F("Dir: "));
     Serial.print(robo.lerSensorLinhaDir());
-    Serial.print("+Dir: ");
+    Serial.print(F("+Dir: "));
     Serial.print(robo.lerSensorLinhaMaisDir());
-    Serial.println(" ");
+    Serial.println(F(" "));
     delay(2000);
     if(Serial.available()) {
       Serial.read();
@@ -331,18 +331,31 @@ void Calibracao::aguardaPosicionamentoRefletancia() {
 }
 
 void Calibracao::aguardaPosicionamentoCor() {
-  Serial.println("ATENÇÃO!");
-  Serial.println(("Insira algo quando estiver posicionado de forma correta"));
- // while(1) {
- // Serial.read();
+  Serial.println(F("ATENÇÃO!"));
+  Serial.println(F("Insira algo quando estiver posicionado de forma correta"));
+
   while(Serial.available() == 0) {
-  Serial.println("CALIBRE HSV ESQUERDO");
-// Serial.print(robo.getHSVEsquerdo());
-//Serial.print(robo.getHSVEsquerdo());
-//Serial.println("CALIBRE HSV DIREITO");
-// Serial.print(sensorCor.setBranco(robo.getHSVDireito());
- 
-    delay(2000);
+    HSV leituraSensorCorEsquerdo;
+    HSV leituraSensorCorDireito;
+    
+    Serial.println(F("CALIBRE HSV ESQUERDO"));
+    leituraSensorCorEsquerdo = robo.getHSVEsquerdo();
+    Serial.print(leituraSensorCorEsquerdo.h);
+    Serial.print(F(","));
+    Serial.print(leituraSensorCorEsquerdo.s);
+    Serial.print(F(","));
+    Serial.print(leituraSensorCorEsquerdo.v);
+
+    Serial.print(F("  "));
+    Serial.println(F("CALIBRE HSV DIREITO"));
+    leituraSensorCorDireito = robo.getHSVDireito();
+    Serial.print(leituraSensorCorDireito.h);
+    Serial.print(F(","));
+    Serial.print(leituraSensorCorDireito.s);
+    Serial.print(F(","));
+    Serial.print(leituraSensorCorDireito.v);
+    Serial.print(F("  ")); 
+    delay(1000);
     if(Serial.available()) {
       Serial.read();
       break;
