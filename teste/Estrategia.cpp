@@ -18,27 +18,34 @@ void Estrategia::calibrar(boolean realizarCalibracao){        //"calibrar" eh fu
   }
   else{                                                       //senao realizarCalibraçao
       sensor.semCalibracao();                                 //objeto "sensor" da classe "sensores", chama a funçao "semcalibrar"
-  }
-  
+  }  
   robo.lerSensorSonarFrontal();
 }
 
 void Estrategia::execute(){                                   //"execute" eh funçao da classe "Estrategia", para o robo executar alguma açao
+  testar_verde();
+  //contornarObstaculo();
+  //subir_rampa();
+  // analisar como está assim e depois chamar a função e ver como fica
+  seguir_linha();
+ 
+
   valor_sensor_sonar_frontal = robo.lerSensorSonarFrontal();
   valor_sensor_sonar_lateral_Esquerdo = robo.lerSensorSonarEsq();
   valor_sensor_sonar_lateral_Direito =  robo.lerSensorSonarDir();
 
   if((valor_sensor_sonar_lateral_Esquerdo > 1 && valor_sensor_sonar_lateral_Esquerdo < 10) && (valor_sensor_sonar_lateral_Direito > 1 && valor_sensor_sonar_lateral_Direito < 10)){
-     subir_rampa();
-     
+     subir_rampa();     
      robo.ligarLed(led); 
-  }
-  //else 
+  } 
   if((valor_sensor_sonar_frontal > 1) && (valor_sensor_sonar_frontal < 4)){
     robo.ligarLed(led2);
     contornarObstaculo();
    } 
-  else if (sensor.deve_seguir_em_frente()){                           //"deve_seguir_linha" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
+}
+
+void Estrategia::seguir_linha(){ 
+  if (sensor.deve_seguir_em_frente()){                           //"deve_seguir_linha" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
       robo.acionarMotores(45,45);
   }
   else if(sensor.deve_corrigir_esquerda()){                   //"deve_corrigir_esquerda" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
@@ -68,11 +75,14 @@ void Estrategia::execute(){                                   //"execute" eh fun
       robo.acionarMotores(40, -40);  
     }
     
-  }  
-  else if (sensor.deve_girar_a_esquerda()){  
+  }
+}  
+
+ void Estrategia::testar_verde(){
+ if (sensor.deve_girar_a_esquerda()){  
      if(sensor.eh_verde_esquerdo()){
          girar_esquerdo_verde();
-     }    //"deve_girar_a_esquerda" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
+     }   //"deve_girar_a_esquerda" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
      else{
        while  (sensor.preto_preto_branco_branco()){             //enquanto ele ver preto_preto_branco_branco, ele vai para frente por 100 milisegundos
           robo.acionarMotores(40,40);
@@ -111,6 +121,7 @@ void Estrategia::execute(){                                   //"execute" eh fun
    }*/
      }
   }
+  
    else if(sensor.encruzilhada()){
        robo.acionarMotores(0,0);
        
@@ -165,7 +176,6 @@ void Estrategia::contornarObstaculo(){
         robo.acionarMotores(0,30);
    }
    
-   //Estrategia::alinhaObstaculo();
    robo.desligarLed(led3);
    robo.acionarMotores(35, 35);//anda em paralelo ao robo
    delay(1200);

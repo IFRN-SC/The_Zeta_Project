@@ -11,16 +11,16 @@ void Calibracao::espera(){
 
 void Calibracao::calibraCorEsquerdo(SensorDeCor sensorCor){
   Serial.println(F("CALIBRE HSV DO BRANCO"));
-  aguardaPosicionamentoCor();    
+  espera();
   sensorCor.setBranco(robo.getHSVEsquerdo()) ;
   Serial.println(F("CALIBRE HSV DO PRETO"));
-  aguardaPosicionamentoCor();    
+  espera();
   sensorCor.setPreto(robo.getHSVEsquerdo());
   Serial.println(F("CALIBRE HSV DO VERDE"));
-  aguardaPosicionamentoCor();    
+  espera();
   sensorCor.setVerde(robo.getHSVEsquerdo());
   Serial.println(F("CALIBRE HSV DO CINZA"));
-  aguardaPosicionamentoCor();    
+  espera();
   sensorCor.setCinza(robo.getHSVEsquerdo());
   
   sensorCor.calibra();
@@ -28,24 +28,21 @@ void Calibracao::calibraCorEsquerdo(SensorDeCor sensorCor){
 
 void Calibracao::calibraCorDireito(SensorDeCor sensorCor){
   Serial.println(F("CALIBRE HSV DO BRANCO"));
-  //espera(); VER SE NECESSITAR DESTA FUNÇÃO AQUI
-  aguardaPosicionamentoCor();             
-  sensorCor.setBranco(robo.getHSVDireito());
+  espera();
+  sensorCor.setBranco(robo.getHSVDireito()) ;
   Serial.println(F("CALIBRE HSV DO PRETO"));
-  //espera();
-  aguardaPosicionamentoCor(); 
+  espera();
   sensorCor.setPreto(robo.getHSVDireito());
   Serial.println(F("CALIBRE HSV DO VERDE"));
-  //espera();
-  aguardaPosicionamentoCor(); 
+  espera();
   sensorCor.setVerde(robo.getHSVDireito());
   Serial.println(F("CALIBRE HSV DO CINZA"));
-  //espera();
-  aguardaPosicionamentoCor(); 
+  espera();
   sensorCor.setCinza(robo.getHSVDireito());
- 
+  
   sensorCor.calibra();
 }
+
 
 
 void Calibracao::menu_geral(SensorDeCor sensorEsquerdo, SensorDeCor sensorDireito){
@@ -56,10 +53,13 @@ void Calibracao::menu_geral(SensorDeCor sensorEsquerdo, SensorDeCor sensorDireit
       Serial.println(F("Para calibrar sensor de REFLETANCIA aperte R"));
       Serial.println(F("Para calibrar sensor de COR aperte C"));               //avisa qual letra apertar para calibrar o esquerdo
       Serial.println(F("Para sair aperte S"));      
-            
-      char espera_ler = esperaLer();      
+      
+      
+      char espera_ler = esperaLer();
+      
 
-      switch(espera_ler){                                        //switch(escolha caso), recebe como parametro a variavel "espera_ler"        
+      switch(espera_ler){                                        //switch(escolha caso), recebe como parametro a variavel "espera_ler"
+        
         case 'R':
             menu_refletancia();                            //caso seja "E", ele executa a funçao "calibra_refletancia_E()"
             break;
@@ -85,14 +85,16 @@ void Calibracao::menu_cor(SensorDeCor sensorEsquerdo, SensorDeCor sensorDireito)
       char espera_ler = esperaLer();                             //a variavel "espera_ler" que retorna um char, recebe a funçao de "esperaLer()"
       
       switch(espera_ler){                                        //switch(escolha caso), recebe como parametro a variavel "espera_ler"
-         case 'E':
+        
+        case 'E':
             calibraCorEsquerdo(sensorEsquerdo);                           
             break;
         case 'D':
             calibraCorDireito(sensorDireito);
             break;
         case 'S':
-          sair_menu_cor=true;          
+          sair_menu_cor=true;
+          
       }
     }
 }
@@ -269,38 +271,4 @@ char Calibracao::esperaLer(){                           //funçao usada para esp
     while(!Serial.available()){                         //enquanto for diferente de serial.available, ou seja, enquanto nao digitar nada ele nao vai fazer nada
     }
     return Serial.read();                               //quando alguem digitar algo, ele vai sair do laço e vai retornar o char que foi digitado
-}
-
-// teste
-void Calibracao::aguardaPosicionamentoCor() {
-  Serial.println(F("ATENÇÃO!"));
-  Serial.println(F("Insira algo quando estiver posicionado de forma correta"));
-
-  while(1) {
-  Serial.read();
-    HSV leituraSensorCorEsquerdo;
-    HSV leituraSensorCorDireito;
-    
-    Serial.println(F("CALIBRE HSV ESQUERDO"));
-    leituraSensorCorEsquerdo = robo.getHSVEsquerdo();
-    Serial.print(leituraSensorCorEsquerdo.h);
-    Serial.print(F(","));
-    Serial.print(leituraSensorCorEsquerdo.s);
-    Serial.print(F(","));
-    Serial.print(leituraSensorCorEsquerdo.v);
-    Serial.print(F("  "));
-    Serial.println(F("CALIBRE HSV DIREITO"));
-    leituraSensorCorDireito = robo.getHSVDireito();
-    Serial.print(leituraSensorCorDireito.h);
-    Serial.print(F(","));
-    Serial.print(leituraSensorCorDireito.s);
-    Serial.print(F(","));
-    Serial.print(leituraSensorCorDireito.v);
-    Serial.print(F("  ")); 
-    delay(1000);
-    if(Serial.available()) {
-      Serial.read();
-      break;
-    }
-  }
 }
