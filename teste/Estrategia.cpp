@@ -11,8 +11,6 @@ Estrategia::Estrategia(){
   valor_sensor_sonar_lateral_Esquerdo = 100000000;
   valor_sensor_sonar_lateral_Direito = 100000000;
 }
-
-
 void Estrategia::calibrar(boolean realizarCalibracao){        //"calibrar" eh funçao da classe "Estrategia"
   if(realizarCalibracao){                                     //se realizarCalibraçao ele vai chamar a funçao calibrar
       sensor.calibrar();                                      //objeto "sensor" da classe "sensores", chama a funçao "calibrar"
@@ -172,12 +170,12 @@ void Estrategia::contornarObstaculo(){
    //Estrategia::alinhaObstaculo();
    robo.desligarLed(led3);
    robo.acionarMotores(30, 30);//anda em paralelo ao robo
-   delay(1200);
+   delay(1400);
    robo.acionarMotores(0, 0);
-   delay(1100); 
+   delay(1000); 
    
    robo.acionarMotores(30, -30);//gira para ficar pra frente
-   delay(600);
+   delay(800);
    robo.acionarMotores(0, 0);
    delay(1000); 
    
@@ -187,7 +185,7 @@ void Estrategia::contornarObstaculo(){
    delay(1000); 
    
    robo.acionarMotores(30, -30);//gira para ficar de lado
-   delay(600);
+   delay(800);
    robo.acionarMotores(0, 0);
    delay(1000); 
 
@@ -227,18 +225,18 @@ void Estrategia::rampa(){
      robo.acionarMotores(-30,-30);
   }*/
   if(sensor.branco_preto_branco_branco()){
-     robo.acionarMotores(65, 50); 
+     robo.acionarMotores(75, 60); 
   }
   else if(sensor.branco_branco_preto_branco()){
-      robo.acionarMotores(50, 65);
+      robo.acionarMotores(60, 75);
   }
   else if(sensor.preto_branco_branco_branco()){
-      robo.acionarMotores(55, -40);
+      robo.acionarMotores(65, -50);
   }
   else if(sensor.branco_branco_branco_preto()){
-      robo.acionarMotores(-40, 55);
+      robo.acionarMotores(-50, 65);
   }
   else{
-      robo.acionarMotores(55, 55);
+      robo.acionarMotores(65, 65);
   }
 }
