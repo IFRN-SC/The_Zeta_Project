@@ -23,12 +23,11 @@ void Estrategia::calibrar(boolean realizarCalibracao){        //"calibrar" eh fu
 }
 
 void Estrategia::execute(){                                   //"execute" eh funçao da classe "Estrategia", para o robo executar alguma açao
-  testar_verde();
+  //testar_verde();
   //contornarObstaculo();
   //subir_rampa();
   // analisar como está assim e depois chamar a função e ver como fica
-  seguir_linha();
- 
+  seguir_linha(); 
 
   valor_sensor_sonar_frontal = robo.lerSensorSonarFrontal();
   valor_sensor_sonar_lateral_Esquerdo = robo.lerSensorSonarEsq();
@@ -36,7 +35,6 @@ void Estrategia::execute(){                                   //"execute" eh fun
 
   if((valor_sensor_sonar_lateral_Esquerdo > 1 && valor_sensor_sonar_lateral_Esquerdo < 10) && (valor_sensor_sonar_lateral_Direito > 1 && valor_sensor_sonar_lateral_Direito < 10)){
      subir_rampa();     
-     robo.ligarLed(led); 
   } 
   if((valor_sensor_sonar_frontal > 1) && (valor_sensor_sonar_frontal < 4)){
     robo.ligarLed(led2);
@@ -232,19 +230,33 @@ void Estrategia::subir_rampa(){
   while((!robo.fimDeCurso1Pressionado()) && (!robo.fimDeCurso2Pressionado()) ) {
      robo.acionarMotores(-30,-30);
   }*/
+  robo.ligarLed(led3);
   if(sensor.branco_preto_branco_branco()){
-     robo.acionarMotores(75, 60); 
+     robo.acionarMotores(85, 70); 
   }
   else if(sensor.branco_branco_preto_branco()){
-      robo.acionarMotores(60, 75);
+      robo.acionarMotores(70, 85);
   }
   else if(sensor.preto_branco_branco_branco()){
-      robo.acionarMotores(55, -30);
+      robo.acionarMotores(65, -40);
   }
   else if(sensor.branco_branco_branco_preto()){
-      robo.acionarMotores(-30, 55);
+      robo.acionarMotores(-40, 65);
+  } 
+  else if (sensor.eh_cinza_direito()|| sensor.eh_cinza_esquerdo() ){
+      robo.acionarMotores(85, 85);      
   }
-  else{
+  else {
       robo.acionarMotores(85, 85);
   }
+}
+
+void Estrategia::resgate(){
+   if(sensor.branco_preto_branco_branco()){
+    robo.acionarMotores(60, 60);
+   if((valor_sensor_sonar_frontal > 1) && (valor_sensor_sonar_frontal < 4)){
+    robo.ligarLed(led3);
+    robo.acionarServoGarra1(90);
+   }
+  } 
 }

@@ -56,13 +56,14 @@ class sensores{                                   //classe "sensores", nela tem 
     
     inline boolean eh_preto_cor_esquerdo(){return (corEsquerdo.ehPreto(robo.getHSVEsquerdo()));}
     inline boolean eh_verde_esquerdo(){return (corEsquerdo.ehVerde(robo.getHSVEsquerdo()));}
-    //inline boolean eh_cinza_esquerdo(){return (corEsquerdo.ehCinza(robo.getHSVEsquerdo()));}
+    inline boolean eh_cinza_esquerdo(){return (corEsquerdo.ehCinza(robo.getHSVEsquerdo()));}
     
     inline boolean eh_preto_direito(){return (sensorDireito.ehPreto());}
     inline boolean eh_branco_direito(){return (sensorDireito.ehBranco());}//robo.getHSVDireito()));}//return();}
     
     inline boolean eh_preto_cor_direito(){return (corDireito.ehPreto(robo.getHSVDireito()));}
     inline boolean eh_verde_direito(){return (corDireito.ehVerde(robo.getHSVDireito()));}
+    inline boolean eh_cinza_direito(){return (corDireito.ehCinza(robo.getHSVDireito()));}
     
     inline boolean eh_preto_mais_esquerdo(){return (sensorMaisEsquerdo.ehPreto());}
     inline boolean eh_branco_mais_esquerdo(){return (sensorMaisEsquerdo.ehBranco());}
@@ -75,6 +76,7 @@ class sensores{                                   //classe "sensores", nela tem 
     void calibrar();
     void semCalibracao();
     void executar();
+    void calibrar_auto();
     bool deve_seguir_em_frente();
     bool deve_corrigir_esquerda();
     bool deve_corrigir_direita();
