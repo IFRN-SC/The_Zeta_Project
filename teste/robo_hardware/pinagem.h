@@ -32,34 +32,41 @@ A5-	SCL							SONAR_ECHO_FRONTAL
 
 class pinagem{
 
-  //***PARA ARDUINO UNO E PRO MINI DEVE-SE UTILIZAR PARA MOTORES DC O PWM SOMENTE NAS PORTAS 5 E 6 ***/// 
-  #define PWM_RODA_ESQUERDA 		  6		//Define o pino que ligara o motor esquerdo para mudar a velocidade de rotacao/amarelo 
-  #define SENTIDO_RODA_ESQUERDA 	7		//Define o pino que ligara o motor esquerdo para mudar o sentido de rotacao/verde
-  
+  //***PARA ARDUINO UNO E PRO MINI DEVE-SE UTILIZAR PARA MOTORES DC O PWM SOMENTE NAS PORTAS 5 E 6 ***///
+  #define PWM_RODA_ESQUERDA 		6		//Define o pino que ligara o motor esquerdo para mudar a velocidade de rotacao
+  #define SENTIDO_RODA_ESQUERDA 7		//Define o pino que ligara o motor esquerdo para mudar o sentido de rotacao
+
 	//***PARA ARDUINO UNO E PRO MINI DEVE-SE UTILIZAR PARA MOTORES DC O PWM SOMENTE NAS PORTAS 5 E 6 ***///
-  #define PWM_RODA_DIREITA 		    5		//Define o pino que ligara o motor direito para mudar a velocidade de rotacao/amarelo 
-  #define SENTIDO_RODA_DIREITA 		4		//Define o pino que ligara o motor direito para mudar o sentido de rotacao/azul
+  #define PWM_RODA_DIREITA 		4		//Define o pino que ligara o motor direito para mudar a velocidade de rotacao
+  #define SENTIDO_RODA_DIREITA 	5		//Define o pino que ligara o motor direito para mudar o sentido de rotacao
 
-  //A presente biblioteca pode controlar dois servomotores  
-  #define SERVO_GARRA_1 		10		//Define o pino para "controlar" o servo motor 1
-  #define SERVO_GARRA_2 		9		//Define o pino para "controlar" o servo motor 2
+	//A presente biblioteca pode controlar dois servomotores
+  #define SERVO_GARRA_1 				8	//Define o pino para "controlar" o servo motor 1
+  #define SERVO_GARRA_2 				9		//Define o pino para "controlar" o servo motor 2
 
-  //*********PINOS PARA SENSORES DE REFLETANCIA*********//
-  #define SENSOR_LINHA_MAIS_ESQUERDO	 A1	//Define o pino do sensor de refletancia esquerdo 
-  #define SENSOR_LINHA_ESQUERDO	       A0	//Define o pino do sensor de refletancia esquerdo 
-  #define SENSOR_LINHA_DIREITO	       A3	//Define o pino do sensor de refletancia direito
-  #define SENSOR_LINHA_MAIS_DIREITO		 A2	//Define o pino do sensor de refletancia direito
+
+	//A presente biblioteca utiliza dois sensores de refletancia ou sensores de linha
+	#define SENSOR_LINHA_MAIS_ESQUERDO	A3	//Define o pino do sensor de refletancia esquerdo
+	#define SENSOR_LINHA_ESQUERDO	A2	//Define o pino do sensor de refletancia esquerdo
+  #define SENSOR_LINHA_DIREITO	A1	//Define o pino do sensor de refletancia direito
+  #define SENSOR_LINHA_MAIS_DIREITO	A0	//Define o pino do sensor de refletancia direito
+
+
+	#define LED_SENSOR_LINHA_MAIS_ESQUERDO 32
+	#define LED_SENSOR_LINHA_ESQUERDO 44
+	#define LED_SENSOR_LINHA_DIREITO 40
+	#define LED_SENSOR_LINHA_MAIS_DIREITO 42
 
 	//A biblioteca possui dois sensores de cor: um esquerdo e outro direito.
 	//cada sensor de cor precisa de 3 pinos para configuracao e leitura da cor
 	//Os pinos dos sensores de cor são específicos para o arduino UNO e podem ser modificados para o arduino mega
-	#define SENSOR_COR_ESQ_S2		40	
-	#define SENSOR_COR_ESQ_S3		42 	
-	#define SENSOR_COR_ESQ_OUT	44	
+	#define SENSOR_COR_ESQ_S2			48
+	#define SENSOR_COR_ESQ_S3			50
+	#define SENSOR_COR_ESQ_OUT		52
 
-	#define SENSOR_COR_DIR_S2		28
-	#define SENSOR_COR_DIR_S3		30
-	#define SENSOR_COR_DIR_OUT	32
+	#define SENSOR_COR_DIR_S2			28
+	#define SENSOR_COR_DIR_S3			30
+	#define SENSOR_COR_DIR_OUT		32
 
 	#define SENSOR_COR_DIR_TCS34	38
 	#define SENSOR_COR_ESQ_TCS34	50
@@ -68,12 +75,12 @@ class pinagem{
 	#define SONAR_TRIGGER_FRONTAL	16 //Pino analogico A4
 	#define SONAR_ECHO_FRONTAL		17 //Pino analogico A5
 
-	#define SONAR_TRIGGER_ESQ	22 
-	#define SONAR_ECHO_ESQ		24 
+	#define SONAR_TRIGGER_ESQ	22
+	#define SONAR_ECHO_ESQ		24
 
-	#define SONAR_TRIGGER_DIR	23 
+	#define SONAR_TRIGGER_DIR	23
 	#define SONAR_ECHO_DIR		25
-	
+
 //Pinos exclusivo para arduino mega
 
 	#define BOTAO_1	29
