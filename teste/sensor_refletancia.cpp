@@ -30,7 +30,7 @@ int valor = robo.lerSensorDeLinha(pinoSensor);
 }
 
 int SensorRefletancia::getLuz(){
-  return robo.lerSensorDeLinha(pinoSensor);
+  return robo.lerDadosSensorDeLinha(pinoSensor).valorDiferenca;
 }
 
 float SensorRefletancia::facaMedia(int num1, int num2){
