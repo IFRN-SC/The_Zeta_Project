@@ -3,7 +3,7 @@
 
 #include "Refletancia.h"
 #include "sensor_cor.h"
-#include <robo_hardware.h> 
+#include <robo_hardware2.h> 
 #include <Servo.h>
 
 class Calibracao{                 //classe "Calibracao"
