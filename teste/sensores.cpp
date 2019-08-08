@@ -193,10 +193,10 @@ void sensores::espereCor(){
 }
 
 void sensores::semCalibracao(){
-  sensorMaisEsquerdo.setMedia(6);
-  sensorEsquerdo.setMedia(7);
-  sensorDireito.setMedia(6);
-  sensorMaisDireito.setMedia(6);
+  sensorMaisEsquerdo.setMedia(4);
+  sensorEsquerdo.setMedia(3);
+  sensorDireito.setMedia(3);
+  sensorMaisDireito.setMedia(3);
   
 }
 
