@@ -19,7 +19,6 @@ void Estrategia::calibrar(boolean realizarCalibracao){        //"calibrar" eh fu
   else{                                                       //senao realizarCalibraçao
       sensor.semCalibracao();                                 //objeto "sensor" da classe "sensores", chama a funçao "semcalibrar"
   }  
-  robo.lerSensorSonarFrontal();
 }
 
 void Estrategia::execute(){                                   //"execute" eh funçao da classe "Estrategia", para o robo executar alguma açao
@@ -28,8 +27,7 @@ void Estrategia::execute(){                                   //"execute" eh fun
   valor_sensor_sonar_lateral_Direito =  robo.lerSensorSonarDir();
 
   seguir_linha(); 
-  testar_verde();
-  contornarObstaculo();
+    
   if((valor_sensor_sonar_frontal > 1) && (valor_sensor_sonar_frontal < 4)){
     robo.ligarLed(led2);
     contornarObstaculo();
@@ -43,39 +41,42 @@ void Estrategia::execute(){                                   //"execute" eh fun
 
 void Estrategia::seguir_linha(){ 
   if (sensor.deve_seguir_em_frente()){                           //"deve_seguir_linha" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
-      robo.acionarMotores(45,45);
+      robo.acionarMotores(30,30);
   }
     else if(sensor.deve_corrigir_esquerda()){                   //"deve_corrigir_esquerda" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
-      robo.acionarMotores(-40,40);                           //se a esquerda tiver vendo preto, ele vai girar a roda esquerda para tras e direita para frente
+      robo.acionarMotores(-30,30);                           //se a esquerda tiver vendo preto, ele vai girar a roda esquerda para tras e direita para frente
     }
     else if(sensor.deve_corrigir_direita()){                    //"deve_corrigir_direita" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
-      robo.acionarMotores(40, -40);                           //se a direita tiver vendo preto, ele vai girar a roda esquerda para frente e direita para tras
+      robo.acionarMotores(30, -30);                           //se a direita tiver vendo preto, ele vai girar a roda esquerda para frente e direita para tras
   }else if(sensor.deve_girar_a_esquerda()){
+      testar_verde();                                        //testa se esta vendo verde ou nao
       while(!sensor.branco_branco_branco_branco()){
-        robo.acionarMotores(40,40);
+        robo.acionarMotores(30,30);
       }
       while(sensor.eh_branco_esquerdo()){
-        robo.acionarMotores(-40, 40);  
+        robo.acionarMotores(-30, 30);  
       }
       while(!sensor.eh_branco_esquerdo()){
-        robo.acionarMotores(-40, 40);  
+        robo.acionarMotores(-30, 30);  
       }
       
   }else if(sensor.deve_girar_a_direita()){
+    testar_verde();                                    //testa se esta vendo verde ou nao
     while (!sensor.branco_branco_branco_branco()){
-      robo.acionarMotores(40,40);
+      robo.acionarMotores(30,30);
     }
     while (sensor.eh_branco_direito()){
-      robo.acionarMotores(40, -40);  
+      robo.acionarMotores(30, -30);  
     }
     while (!sensor.eh_branco_direito()){
-      robo.acionarMotores(40, -40);  
+      robo.acionarMotores(30, -30);  
     }    
   }
 }
 
  void Estrategia::testar_verde(){
- if (sensor.deve_girar_a_esquerda()){  
+ if (sensor.deve_girar_a_esquerda()){
+     delay(1000);  
      if(sensor.eh_verde_esquerdo()){
          girar_esquerdo_verde();
      }   //"deve_girar_a_esquerda" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
@@ -92,10 +93,10 @@ void Estrategia::seguir_linha(){
           delay (200);
           robo.acionarMotores(40,40);
        }
-     }
+    }
   }
   
-  else if (sensor.deve_girar_a_direita()){                    //"deve_girar_a_esquerda" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
+   if (sensor.deve_girar_a_direita()){                    //"deve_girar_a_esquerda" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
      if(sensor.eh_verde_direito()){
          robo.acionarMotores(40, -40);
      }    //"deve_girar_a_esquerda" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"

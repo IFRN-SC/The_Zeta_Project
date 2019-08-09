@@ -193,10 +193,13 @@ void sensores::espereCor(){
 }
 
 void sensores::semCalibracao(){
-  sensorMaisEsquerdo.setMedia(4);
-  sensorEsquerdo.setMedia(3);
-  sensorDireito.setMedia(3);
-  sensorMaisDireito.setMedia(3);
+  calibracao_dados cd;
+  robo.lerCalibracao(cd);
+  
+  sensorMaisEsquerdo.setMedia(cd.refletanciaMaisEsq);
+  sensorEsquerdo.setMedia(cd.refletanciaEsq);
+  sensorDireito.setMedia(cd.refletanciaDir);
+  sensorMaisDireito.setMedia(cd.refletanciaMaisDir);
   
 }
 
@@ -210,7 +213,7 @@ void sensores::calibrar(){
 }
 
 bool sensores::deve_seguir_em_frente(){
-   return branco_branco_branco_branco();
+   return branco_branco_branco_branco() ;
 }
 
 bool sensores::deve_corrigir_esquerda(){
