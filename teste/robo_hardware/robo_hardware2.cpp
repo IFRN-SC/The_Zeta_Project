@@ -6,14 +6,14 @@ Servo robo_hardware::servoGarra2;
 int robo_hardware::tipoSensorCor;
 
 robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,SENSOR_COR_DIR_OUT),
-																corEsquerda	(SENSOR_COR_ESQ_S2,SENSOR_COR_ESQ_S3,SENSOR_COR_ESQ_OUT),
-																corDireita34(SENSOR_COR_DIR_TCS34),
-																corEsquerda34(SENSOR_COR_ESQ_TCS34),
-																sonarFrontal(SONAR_TRIGGER_FRONTAL, SONAR_ECHO_FRONTAL),
-																sonarEsq(SONAR_TRIGGER_ESQ, SONAR_ECHO_ESQ),
-																sonarDir(SONAR_TRIGGER_DIR, SONAR_ECHO_DIR),
-																botao1(BOTAO_1), botao2(BOTAO_2), botao3(BOTAO_3),
-																led1(LED_1), led2(LED_2), led3(LED_3)
+	corEsquerda	(SENSOR_COR_ESQ_S2,SENSOR_COR_ESQ_S3,SENSOR_COR_ESQ_OUT),
+	corDireita34(SENSOR_COR_DIR_TCS34),
+	corEsquerda34(SENSOR_COR_ESQ_TCS34),
+	sonarFrontal(SONAR_TRIGGER_FRONTAL, SONAR_ECHO_FRONTAL),
+	sonarEsq(SONAR_TRIGGER_ESQ, SONAR_ECHO_ESQ),
+	sonarDir(SONAR_TRIGGER_DIR, SONAR_ECHO_DIR),
+	botao1(BOTAO_1), botao2(BOTAO_2), botao3(BOTAO_3),
+	led1(LED_1), led2(LED_2), led3(LED_3)
 {
 	tipoSensorCor = TCS23;
 }
