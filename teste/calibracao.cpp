@@ -226,6 +226,7 @@ char Calibracao::escolhaCor(){                                 //funçao "escolh
 
 bool Calibracao::calibraSensor(float valorAtual, char espera_ler, Refletancia &Definitivo){//funçao "calibraSensor" da classe "Calibracao", "valorAtual" recebe o valor lido na hora pelo sensor, "espera_ler" retorna a cor escolhida, a Struct Refletancia retorna qual o sensor
    sair_menu_calibra = false;
+   Serial.println(valorAtual);
     switch(espera_ler){
       
       
