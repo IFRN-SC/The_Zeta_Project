@@ -24,7 +24,7 @@ class Estrategia{              //classe Estrategia
     float valor_sensor_sonar_frontal;
     float valor_sensor_sonar_lateral_Esquerdo;
     float valor_sensor_sonar_lateral_Direito;
-
+    void piscarLeds();
     Garra garra;
     Resgate resgate;
 };

@@ -6,6 +6,7 @@
 int led=1;
 int led2=2;
 int led3=3;
+#define DELAY_TIME 500
 Estrategia::Estrategia(){
   valor_sensor_sonar_frontal = 100000000;
   valor_sensor_sonar_lateral_Esquerdo = 100000000;
@@ -24,9 +25,15 @@ void Estrategia::calibrar(boolean realizarCalibracao){        //"calibrar" eh fu
 void Estrategia::execute(){                                   //"execute" eh funçao da classe "Estrategia", para o robo executar alguma açao
   valor_sensor_sonar_frontal = robo.lerSensorSonarFrontal();
   valor_sensor_sonar_lateral_Esquerdo = robo.lerSensorSonarEsq();
+<<<<<<< Updated upstream
   valor_sensor_sonar_lateral_Direito =  robo.lerSensorSonarDir();
 
   seguir_linha();   
+=======
+  valor_sensor_sonar_lateral_Direito =  robo.lerSensorSonarDir(); 
+    
+  seguir_linha();
+>>>>>>> Stashed changes
   
   if((valor_sensor_sonar_frontal > 1) && (valor_sensor_sonar_frontal < 4)){
     robo.ligarLed(led2);
@@ -34,11 +41,37 @@ void Estrategia::execute(){                                   //"execute" eh fun
    } 
   if((valor_sensor_sonar_lateral_Esquerdo > 1 && valor_sensor_sonar_lateral_Esquerdo < 10)){
      subir_rampa();      
- } 
-  
-
+ }
 }
-
+void Estrategia::piscarLeds(){
+  while(true){
+      robo.acionarMotores(0,0);
+      for(int led=1; led<=3; led++){
+        robo.ligarLed(led);
+        delay(DELAY_TIME);
+      }
+      for(int led=1; led<=3; led++){
+        robo.desligarLed(led);
+        delay(DELAY_TIME);
+      }
+      for(int led=3; led<=1; led--){
+        robo.ligarLed(led);
+        delay(DELAY_TIME);
+      }
+      for(int led=3; led<=1; led--){
+        robo.desligarLed(led);
+        delay(DELAY_TIME);
+      }
+    
+      for(int i=0; i<2; i++){ 
+      robo.ligarTodosLeds();
+      delay(DELAY_TIME/2);
+    
+      robo.desligarTodosLeds();
+      delay(DELAY_TIME/2);
+      }  
+      }
+}
 void Estrategia::seguir_linha(){ 
   if (sensor.deve_seguir_em_frente()){                           //"deve_seguir_linha" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
       robo.acionarMotores(30,30);
@@ -49,8 +82,13 @@ void Estrategia::seguir_linha(){
     else if(sensor.deve_corrigir_direita()){                    //"deve_corrigir_direita" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
       robo.acionarMotores(30, -30);                           //se a direita tiver vendo preto, ele vai girar a roda esquerda para frente e direita para tras
   }else if(sensor.deve_girar_a_esquerda()){
+<<<<<<< Updated upstream
       robo.acionarMotores(0,0);
       testar_verde();                                        //testa se esta vendo verde ou nao
+=======
+      piscarLeds();
+      //testar_verde();                                        //testa se esta vendo verde ou nao
+>>>>>>> Stashed changes
       while(!sensor.branco_branco_branco_branco()){
         robo.acionarMotores(30,30);
       }
@@ -62,8 +100,13 @@ void Estrategia::seguir_linha(){
       }
       
   }else if(sensor.deve_girar_a_direita()){
+<<<<<<< Updated upstream
     robo.acionarMotores(0,0);
     testar_verde();                                    //testa se esta vendo verde ou nao
+=======
+    piscarLeds();
+    //testar_verde();                                    //testa se esta vendo verde ou nao
+>>>>>>> Stashed changes
     while (!sensor.branco_branco_branco_branco()){
       robo.acionarMotores(30,30);
     }
@@ -73,6 +116,8 @@ void Estrategia::seguir_linha(){
     while (!sensor.eh_branco_direito()){
       robo.acionarMotores(30, -30);  
     }    
+  }else if(sensor.branco_preto_preto_branco()){
+    piscarLeds();
   }
 }
 
@@ -91,16 +136,16 @@ void Estrategia::seguir_linha(){
      }   //"deve_girar_a_esquerda" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
      else{
        while(sensor.preto_preto_branco_branco()){             //enquanto ele ver preto_preto_branco_branco, ele vai para frente por 100 milisegundos
-          robo.acionarMotores(40,40);
+          robo.acionarMotores(30,30);
           delay (100);
        }
        while(sensor.branco_branco_branco_branco()){            //enquanto ele ver todos branco, ele vai girar pro lado esquerdo
-           robo.acionarMotores(-40,40); 
+           robo.acionarMotores(-30,30); 
        }
        while(sensor.preto_preto_branco_preto() || sensor.preto_preto_branco_branco()){//enquanto ele preto_preto_branco_preto, ele vai girar um pouco pra direita e voltar a seguir em frente
-          robo.acionarMotores(40,-40);
+          robo.acionarMotores(30,-30);
           delay (200);
-          robo.acionarMotores(40,40);
+          robo.acionarMotores(30,30);
        }
     }
   }
@@ -110,7 +155,7 @@ void Estrategia::seguir_linha(){
          robo.acionarMotores(30, -30);
      }    //"deve_girar_a_esquerda" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
      else{
-       /*while  (sensor.branco_branco_preto_preto()){             //enquanto ele ver branco_branco_preto_preto, ele vai para frente por 100 milisegundos
+       while  (sensor.branco_branco_preto_preto()){             //enquanto ele ver branco_branco_preto_preto, ele vai para frente por 100 milisegundos
           robo.acionarMotores(40,40);	
           delay (100);
        }
@@ -123,24 +168,22 @@ void Estrategia::seguir_linha(){
           delay (200);
   	robo.acionarMotores(40,40);
        }
-     //}
-   }*/
      }
-  }
-  
-   else if(sensor.encruzilhada()){
-       robo.acionarMotores(0,0);
-       
-         if(sensor.eh_verde_esquerdo()){
-           girar_esquerdo_verde();
-         }
-         else if(sensor.eh_verde_direito()){
-           girar_direito_verde();
-         }
-         else{
-           robo.acionarMotores(40,40);
-         }  
-   }/*
+   }
+//   else if(sensor.encruzilhada()){
+//       robo.acionarMotores(0,0);
+//       
+//         if(sensor.eh_verde_esquerdo()){
+//           girar_esquerdo_verde();
+//         }
+//         else if(sensor.eh_verde_direito()){
+//           girar_direito_verde();
+//         }
+//         else{
+//           robo.acionarMotores(40,40);
+//         }  
+//   }
+/*
    else if(sensor.branco_branco_preto_branco()){
          girar_direito_verde();
    }
@@ -160,10 +203,17 @@ void Estrategia::girar_esquerdo_verde(){
 
 void Estrategia::girar_direito_verde(){
     while(sensor.eh_preto_direito()){
+<<<<<<< Updated upstream
       robo.acionarMotores(-35, 35);
     }
     while(sensor.eh_branco_direito()){
       robo.acionarMotores(-35, 35);
+=======
+      robo.acionarMotores(-30, 30);
+    }
+    while(sensor.eh_branco_direito()){
+      robo.acionarMotores(-30, 30);
+>>>>>>> Stashed changes
     }
 }
 

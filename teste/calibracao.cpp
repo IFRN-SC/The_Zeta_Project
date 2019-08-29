@@ -19,9 +19,9 @@ void Calibracao::calibraCorEsquerdo(SensorDeCor sensorCor){
   Serial.println(F("CALIBRE HSV DO VERDE"));
   espera();
   sensorCor.setVerde(robo.getHSVEsquerdo());
-  Serial.println(F("CALIBRE HSV DO CINZA"));
-  espera();
-  sensorCor.setCinza(robo.getHSVEsquerdo());
+  // Serial.println(F("CALIBRE HSV DO CINZA"));
+  // espera();
+  // sensorCor.setCinza(robo.getHSVEsquerdo());
   
   sensorCor.calibra();
 }
@@ -36,9 +36,9 @@ void Calibracao::calibraCorDireito(SensorDeCor sensorCor){
   Serial.println(F("CALIBRE HSV DO VERDE"));
   espera();
   sensorCor.setVerde(robo.getHSVDireito());
-  Serial.println(F("CALIBRE HSV DO CINZA"));
-  espera();
-  sensorCor.setCinza(robo.getHSVDireito());
+  // Serial.println(F("CALIBRE HSV DO CINZA"));
+  // espera();
+  // sensorCor.setCinza(robo.getHSVDireito());
   
   sensorCor.calibra();
 }
