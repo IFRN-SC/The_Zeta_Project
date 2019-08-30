@@ -13,9 +13,6 @@ void Resgate::alinhar (){
     delay (150);
     robo.acionarMotores(-40,-40);
     delay (1000);
-    robo.acionarMotores(0,0);
+    robo.acionarMotores(10,10);
     delay (2000);
 }
-
-
-

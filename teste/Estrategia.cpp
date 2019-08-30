@@ -1,4 +1,4 @@
-#include "Estrategia.h"
+no#include "Estrategia.h"
 #include "sensores.h"
 #include "sensor_cor.h"
 #include <robo_hardware2.h>
@@ -29,7 +29,7 @@ void Estrategia::execute(){                                   //"execute" eh fun
 
   seguir_linha();   
   
-  if((valor_sensor_sonar_frontal > 1) && (valor_sensor_sonar_frontal < 4)){
+  if((valor_sensor_sonar_frontal > 1) && (valor_sensor_sonar_frontal < 3)){
     robo.ligarLed(led2);
     contornarObstaculo();
    } 
@@ -115,7 +115,7 @@ void Estrategia::seguir_linha(){
   //piscarLeds();
 
   if(sensor.eh_verde_esquerdo() && sensor.eh_verde_direito()){
-    robo.acionarMotores(-45,40);
+    robo.acionarMotores(-40,40);
     delay(1000);
      robo.acionarMotores(25,25);
     
@@ -224,8 +224,14 @@ void Estrategia::contornarObstaculo(){
    delay(400);
    robo.acionarMotores(0, 0);
    delay(1000);  
+   robo.acionarMotores(-25,25);
+   delay(1000);   
       
-   while (!(sensor.preto_branco_branco_branco())){
+   robo.acionarMotores(0, 0);
+   delay(1000); 
+   
+   /* Testado sem isso
+     while (!(sensor.preto_branco_branco_branco())){
         robo.acionarMotores(-20,10);
    }
       
@@ -234,10 +240,10 @@ void Estrategia::contornarObstaculo(){
 
    while(!(sensor.eh_preto_mais_direito())){
         robo.acionarMotores(0,0);
-   }
-   
+   }*/
+    
    robo.desligarLed(led);
-   robo.acionarMotores(35, 35);//anda em paralelo ao robo
+   robo.acionarMotores(25, 25);//anda em paralelo ao robo
    delay(1200);
    robo.acionarMotores(0, 0);
    delay(1100);    
@@ -276,24 +282,24 @@ void Estrategia::subir_rampa(){
   while(((valor_sensor_sonar_lateral_Esquerdo > 1 && valor_sensor_sonar_lateral_Esquerdo < 10))){
     robo.ligarLed(led3);
     if(sensor.branco_branco_branco_branco()){
-      robo.acionarMotores(50, 50);
+      robo.acionarMotores(60, 60);
     }else if(sensor.branco_branco_preto_branco() ||
              sensor.branco_branco_preto_preto()  ||
              sensor.branco_branco_branco_preto()){
-      robo.acionarMotores(45,-30);
+      robo.acionarMotores(55,-40);
     }else if(sensor.branco_preto_branco_branco() ||
              sensor.preto_preto_branco_branco()  ||
              sensor.preto_branco_branco_preto()){
-      robo.acionarMotores(-30, 55);
+      robo.acionarMotores(-40, 65);
     }else{
-      robo.acionarMotores(30, 30);
+      robo.acionarMotores(40, 40);
     }
     valor_sensor_sonar_lateral_Esquerdo= robo.lerSensorSonarEsq();
   }
   robo.desligarLed(led3);
-  robo.acionarMotores(50, 50);
+  robo.acionarMotores(60, 60);
   delay(400);
-  robo.acionarMotores(0, 0);
+  robo.acionarMotores(20, 20);
   while(1);
   resgate.alinhar(); 
 }
