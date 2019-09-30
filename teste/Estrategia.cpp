@@ -1,4 +1,4 @@
-no#include "Estrategia.h"
+#include "Estrategia.h"
 #include "sensores.h"
 #include "sensor_cor.h"
 #include <robo_hardware2.h>
