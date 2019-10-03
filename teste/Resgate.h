@@ -11,6 +11,10 @@ class Resgate: public Garra {
     public :
         Resgate ();
        	void alinhar ();
+        void procurarVitima();
+        void abrirGarra();
+        void fecharGarra();
+        void salvarVitima();
 };
 
 #endif

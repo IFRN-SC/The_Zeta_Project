@@ -16,3 +16,18 @@ void Resgate::alinhar (){
     robo.acionarMotores(10,10);
     delay (2000);
 }
+void Resgate::procurarVitima(){
+  
+}
+
+void Resgate::abrirGarra(){
+  
+}
+
+void Resgate::fecharGarra(){
+  
+}
+
+void Resgate::salvarVitima(){
+  
+}
