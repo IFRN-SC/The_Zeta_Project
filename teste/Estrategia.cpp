@@ -48,15 +48,9 @@ void Estrategia::seguir_linha(){
     else if(sensor.deve_corrigir_direita()){                    //"deve_corrigir_direita" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
       robo.acionarMotores(30, -30);                           //se a direita tiver vendo preto, ele vai girar a roda esquerda para frente e direita para tras
   }else if(sensor.deve_girar_a_esquerda()){
-
- robo.acionarMotores(0,0);
- delay(1000);
-
+      //testar_verde();
       while(!sensor.branco_branco_branco_branco()){
-
         robo.acionarMotores(20,20);
- 
-
       }
       while(sensor.eh_branco_esquerdo()){
         robo.acionarMotores(-30, 30);  
@@ -66,18 +60,10 @@ void Estrategia::seguir_linha(){
       }
       
   }else if(sensor.deve_girar_a_direita()){
-    robo.acionarMotores(0,0);
-    delay(1000);
-   
-
+    //testar_verde();
     while (!sensor.branco_branco_branco_branco()){
       robo.acionarMotores(20,20);
-
     }
-
-//    /                                    //testa se esta vendo verde ou nao
-   
-
     while (sensor.eh_branco_direito()){
       robo.acionarMotores(30, -30);  
     }
@@ -94,6 +80,7 @@ void Estrategia::seguir_linha(){
     delay(1000);
     robo.acionarMotores(30, 30);
   }
+
 }
 
  void Estrategia::testar_verde(){
@@ -210,7 +197,7 @@ void Estrategia::contornarObstaculo(){
    }*/
     
    
-   robo.acionarMotores(25, 25);//anda em paralelo ao robo
+   robo.acionarMotores(20, 20);//anda em paralelo ao robo
    delay(1200);
    robo.acionarMotores(0, 0);
    delay(1000);    
@@ -259,8 +246,8 @@ void Estrategia::subir_rampa(){
   robo.acionarMotores(60, 60);
   delay(400);
   robo.acionarMotores(20, 20);
-  while(1);
-  resgate.alinhar(); 
+  //while(1);
+  //resgate.alinhar(); 
 }
 
  
