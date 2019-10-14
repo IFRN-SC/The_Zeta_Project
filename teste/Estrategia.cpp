@@ -48,14 +48,15 @@ void Estrategia::seguir_linha(){
     else if(sensor.deve_corrigir_direita()){                    //"deve_corrigir_direita" eh funçao da classe "sensores", que esta sendo acessada atraves do objeto "sensor"
       robo.acionarMotores(30, -30);                           //se a direita tiver vendo preto, ele vai girar a roda esquerda para frente e direita para tras
   }else if(sensor.deve_girar_a_esquerda()){
-     // robo.acionarMotores(0,0);
-      //delay(1000);
-      //robo.acionarMotores(-10,-10);
-      //robo.acionarMotores(10,10);
-      //testar_verde();                                        //testa se esta vendo verde ou nao
-      
+
+ robo.acionarMotores(0,0);
+ delay(1000);
+
       while(!sensor.branco_branco_branco_branco()){
-        robo.acionarMotores(30,30);
+
+        robo.acionarMotores(20,20);
+ 
+
       }
       while(sensor.eh_branco_esquerdo()){
         robo.acionarMotores(-30, 30);  
@@ -65,22 +66,27 @@ void Estrategia::seguir_linha(){
       }
       
   }else if(sensor.deve_girar_a_direita()){
-    //robo.acionarMotores(0,0);
-    //delay(1000);
-    //robo.acionarMotores(-10,-10);
-    //robo.acionarMotores(10,10);
-    //testar_verde();                                    //testa se esta vendo verde ou nao
-    
+    robo.acionarMotores(0,0);
+    delay(1000);
+   
+
     while (!sensor.branco_branco_branco_branco()){
-      robo.acionarMotores(30,30);
+      robo.acionarMotores(20,20);
+
     }
+
+//    /                                    //testa se esta vendo verde ou nao
+   
+
     while (sensor.eh_branco_direito()){
       robo.acionarMotores(30, -30);  
     }
     while (!sensor.eh_branco_direito()){
       robo.acionarMotores(30, -30);  
     }    
-  }else if(sensor.branco_preto_preto_branco()){
+    
+    }
+  else if (sensor.branco_preto_preto_branco()){
     robo.acionarMotores(30, -30);
   }
   else if (sensor.preto_preto_preto_preto() || sensor.preto_preto_preto_branco() || sensor.branco_preto_preto_preto()){
@@ -253,12 +259,8 @@ void Estrategia::subir_rampa(){
   robo.acionarMotores(60, 60);
   delay(400);
   robo.acionarMotores(20, 20);
-
-//testa se é melhor com o if, ou apenas chamar resgate.alinhar
-  if(valor_sensor_sonar_lateral_Esquerdo > 1 && valor_sensor_sonar_lateral_Esquerdo < 15 && valor_sensor_sonar_lateral_Direito > 1 && valor_sensor_sonar_lateral_Direito <  4){
-    resgate.alinhar();
-  }
-
+  while(1);
+  resgate.alinhar(); 
 }
 
  
